@@ -1,0 +1,4 @@
+wa_front:
+    resource: "@WaFrontBundle/Resources/config/routing.yml"
+    prefix:   /
+
