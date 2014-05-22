@@ -55,6 +55,14 @@ class Article
      * @ORM\Column(name="published", type="boolean")
      */
     private $published;
+    
+    /**
+     *
+     * @var type Account
+     * 
+     * @ORM\ManyToOne(targetEntity="Wa\MemberBundle\Entity\Account", inversedBy="articles")
+     */
+    private $account;
 
 
     /**
@@ -180,5 +188,28 @@ class Article
     public function getPublished()
     {
         return $this->published;
+    }
+
+    /**
+     * Set account
+     *
+     * @param \Wa\MemberBundle\Entity\Account $account
+     * @return Article
+     */
+    public function setAccount(\Wa\MemberBundle\Entity\Account $account = null)
+    {
+        $this->account = $account;
+
+        return $this;
+    }
+
+    /**
+     * Get account
+     *
+     * @return \Wa\MemberBundle\Entity\Account 
+     */
+    public function getAccount()
+    {
+        return $this->account;
     }
 }

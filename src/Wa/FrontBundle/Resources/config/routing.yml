@@ -5,3 +5,8 @@ wa_front_homepage:
 wa_add_article:
     pattern: /add
     defaults: { _controller: WaFrontBundle:Home:addArticle }
+
+wa_test:
+    pattern: /test
+    defaults: { _controller: WaFrontBundle:Home:test }
+    

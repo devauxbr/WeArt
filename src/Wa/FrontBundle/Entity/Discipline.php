@@ -35,7 +35,15 @@ class Discipline
      */
     private $description;
 
+    /**
+     *
+     * @var type Ideas
+     * 
+     * @ORM\OneToMany(targetEntity="Wa\FrontBundle\Entity\Idea", mappedBy="discipline")
+     */
+    private $ideas;
 
+    
     /**
      * Get id
      *
@@ -90,5 +98,56 @@ class Discipline
     public function getDescription()
     {
         return $this->description;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->discipline = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+    /**
+     * Add idea
+     *
+     * @param \Wa\FrontBundle\Entity\Idea $idea
+     * @return Discipline
+     */
+    public function addIdea(\Wa\FrontBundle\Entity\Idea $idea)
+    {
+        $this->idea[] = $idea;
+
+        return $this;
+    }
+
+    /**
+     * Remove idea
+     *
+     * @param \Wa\FrontBundle\Entity\Idea $idea
+     */
+    public function removeIdea(\Wa\FrontBundle\Entity\Idea $idea)
+    {
+        $this->idea->removeElement($idea);
+    }
+
+    /**
+     * Get idea
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getIdea()
+    {
+        return $this->idea;
+    }
+
+    /**
+     * Get ideas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getIdeas()
+    {
+        return $this->ideas;
     }
 }

@@ -3,6 +3,7 @@
 namespace Wa\MemberBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use \Wa\FrontBundle\Entity\Idea;
 
 /**
  * Upload
@@ -34,6 +35,14 @@ class Upload
      * @ORM\Column(name="path", type="string", length=255)
      */
     private $path;
+    
+    /**
+     *
+     * @var type Idea
+     * 
+     * @ORM\ManyToOne(targetEntity="Wa\FrontBundle\Entity\Idea", inversedBy="uploads")
+     */
+    private $idea;
 
 
     /**
@@ -90,5 +99,28 @@ class Upload
     public function getPath()
     {
         return $this->path;
+    }
+
+    /**
+     * Set idea
+     *
+     * @param \Wa\FrontBundle\Entity\Idea $idea
+     * @return Upload
+     */
+    public function setIdea(\Wa\FrontBundle\Entity\Idea $idea = null)
+    {
+        $this->idea = $idea;
+
+        return $this;
+    }
+
+    /**
+     * Get idea
+     *
+     * @return \Wa\FrontBundle\Entity\Idea 
+     */
+    public function getIdea()
+    {
+        return $this->idea;
     }
 }

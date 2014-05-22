@@ -27,6 +27,15 @@ class Tag
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
+    
+    
+     /**
+     *
+     * @var type Ideas
+     * 
+     * @ORM\ManyToMany(targetEntity="Wa\FrontBundle\Entity\Idea", inversedBy="tags")
+     */
+    private $ideas;
 
 
     /**
@@ -60,5 +69,45 @@ class Tag
     public function getTitle()
     {
         return $this->title;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->ideas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add ideas
+     *
+     * @param \Wa\FrontBundle\Entity\Idea $ideas
+     * @return Tag
+     */
+    public function addIdea(\Wa\FrontBundle\Entity\Idea $ideas)
+    {
+        $this->ideas[] = $ideas;
+
+        return $this;
+    }
+
+    /**
+     * Remove ideas
+     *
+     * @param \Wa\FrontBundle\Entity\Idea $ideas
+     */
+    public function removeIdea(\Wa\FrontBundle\Entity\Idea $ideas)
+    {
+        $this->ideas->removeElement($ideas);
+    }
+
+    /**
+     * Get ideas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getIdeas()
+    {
+        return $this->ideas;
     }
 }

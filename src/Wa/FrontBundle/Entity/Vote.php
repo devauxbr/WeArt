@@ -27,6 +27,23 @@ class Vote
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
+    
+    
+     /**
+     *
+     * @var type Idea
+     * 
+     * @ORM\ManyToOne(targetEntity="Wa\FrontBundle\Entity\Idea", inversedBy="votes")
+     */
+    private $idea;
+    
+     /**
+     *
+     * @var type Account
+     * 
+     * @ORM\ManyToOne(targetEntity="Wa\MemberBundle\Entity\Account", inversedBy="votes")
+     */
+    private $account;
 
 
     /**
@@ -60,5 +77,51 @@ class Vote
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set idea
+     *
+     * @param \Wa\FrontBundle\Entity\Idea $idea
+     * @return Vote
+     */
+    public function setIdea(\Wa\FrontBundle\Entity\Idea $idea = null)
+    {
+        $this->idea = $idea;
+
+        return $this;
+    }
+
+    /**
+     * Get idea
+     *
+     * @return \Wa\FrontBundle\Entity\Idea 
+     */
+    public function getIdea()
+    {
+        return $this->idea;
+    }
+
+    /**
+     * Set account
+     *
+     * @param \Wa\MemberBundle\Entity\Account $account
+     * @return Vote
+     */
+    public function setAccount(\Wa\MemberBundle\Entity\Account $account = null)
+    {
+        $this->account = $account;
+
+        return $this;
+    }
+
+    /**
+     * Get account
+     *
+     * @return \Wa\MemberBundle\Entity\Account 
+     */
+    public function getAccount()
+    {
+        return $this->account;
     }
 }

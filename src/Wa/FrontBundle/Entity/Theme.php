@@ -49,7 +49,14 @@ class Theme
      */
     private $endDate;
 
-
+    /**
+     *
+     * @var type Ideas
+     * 
+     * @ORM\OneToMany(targetEntity="Wa\FrontBundle\Entity\Idea", mappedBy="theme")
+     */
+    private $ideas;
+    
     /**
      * Get id
      *
@@ -150,5 +157,45 @@ class Theme
     public function getEndDate()
     {
         return $this->endDate;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->ideas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add ideas
+     *
+     * @param \Wa\FrontBundle\Entity\Idea $ideas
+     * @return Theme
+     */
+    public function addIdea(\Wa\FrontBundle\Entity\Idea $ideas)
+    {
+        $this->ideas[] = $ideas;
+
+        return $this;
+    }
+
+    /**
+     * Remove ideas
+     *
+     * @param \Wa\FrontBundle\Entity\Idea $ideas
+     */
+    public function removeIdea(\Wa\FrontBundle\Entity\Idea $ideas)
+    {
+        $this->ideas->removeElement($ideas);
+    }
+
+    /**
+     * Get ideas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getIdeas()
+    {
+        return $this->ideas;
     }
 }
