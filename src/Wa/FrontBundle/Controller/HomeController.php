@@ -9,7 +9,7 @@ use Wa\FrontBundle\Entity\Idea;
 
 class HomeController extends Controller
 {
-    public function indexAction()
+	public function listArticleAction()
     {
 		
 		$em = $this->getDoctrine()->getManager();
@@ -17,8 +17,13 @@ class HomeController extends Controller
 		
 		$articles = $articleRepo->findAll();
 		
-        return $this->render('WaFrontBundle:Home:index.html.twig',
+        return $this->render('WaFrontBundle:Home:listArticle.html.twig',
 				array('articles' => $articles));
+    }
+	
+    public function indexAction()
+    {
+		return $this->render('WaFrontBundle:Home:index.html.twig');
     }
 	
     public function addArticleAction()

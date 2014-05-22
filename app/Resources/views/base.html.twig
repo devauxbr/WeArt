@@ -2,12 +2,20 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>WeArt - {% block title %}{% endblock %}</title>
+        {% block stylesheets %}
+			{# Everything is based on bootstrap #}
+			<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+		{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+			{# Everything is based on bootstrap #}
+			<!--<script src="{{ asset('js/bootstrap.min.js') }}"></script>-->
+		{% endblock %}
     </body>
 </html>

@@ -1,15 +1,19 @@
 {% extends "::front.html.twig" %}
 
 {% block title %}
-	{{ parent() }}Ajout article
+	{{ parent() }}Home
 {% endblock %}
 
 {% block content %}
 	<article>
 		<div class="container">
-			<p>
-				Bien ajouté
-			</p>
+			<h2>Liste des articles</h2>
+
+			<ul>
+				{% for article in articles %}
+					<li>{{ article.title }}</li>
+				{% endfor %}
+			</ul>
 		</div>
 	</article>
 {% endblock %}

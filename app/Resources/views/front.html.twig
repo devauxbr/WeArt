@@ -1,0 +1,83 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	
+	<link rel="stylesheet" href="{{ asset('css/front.css') }}">	
+{% endblock %}
+
+{% block body %}
+	<header>
+		<div class="container">
+			<nav>
+				<div class="links col-xs-5">
+					<ul>
+						<li><a href="{{ path('wa_front_homepage') }}">Home</a></li>
+						<li><a href="#">Consultation</a></li>
+						<li><a href="#">Offres</a></li>
+						<li><a href="#">Une idée ?</a></li>
+						<li class="visible-xs"><a href="#">Compte</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-2">
+					<a href="{{ path('wa_front_homepage') }}">
+						<div class="logo">
+							<h1>WeArt</h1>
+							<h2>World Expects Art</h2>
+						</div>
+					</a>
+				</div>
+				<div class="hidden-xs links right col-md-5">
+					<ul>
+						<li><a href="#">Compte</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div class="triangle"></div>
+	</header>
+	
+	{% block content %}
+	
+	{% endblock %}
+
+	<footer>
+		<div class="container">
+			<div class="col-md-4">
+				<h3>FAQ et Réglement</h3>
+				<nav>
+					<ul>
+						<li><a href="#">Rechercher une question</a></li>
+						<li><a href="#">Foire aux Questions</a></li>
+						<li><a href="#">Règles du site internet</a></li>
+					</ul>
+				</nav>
+
+			</div>
+
+			<div class="col-md-4">
+				<h3>FAQ et Réglement</h3>
+				<nav>
+					<ul>
+						<li><a href="#">Rechercher une question</a></li>
+						<li><a href="#">Foire aux Questions</a></li>
+						<li><a href="#">Règles du site internet</a></li>
+					</ul>
+				</nav>
+			</div>
+
+			<div class="col-md-4">
+				<h3>FAQ et Réglement</h3>
+				<nav>
+					<ul>
+						<li><a href="#">Rechercher une question</a></li>
+						<li><a href="#">Foire aux Questions</a></li>
+						<li><a href="#">Règles du site internet</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+
+	</footer>
+{% endblock %}

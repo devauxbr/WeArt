@@ -1,0 +1,261 @@
+/*
+	Codes couleurs :
+
+	Vert principal : #29c72c
+	Vert reflet bouton : #5cfa60
+	Ombre bouton : #91b091
+	Vert puces :  #3ef942
+	Gris puces :  #9b9b9b
+	gris background : #f1f0f0
+	vert background : #dbf2e5
+	noir header : #282828
+	bleu liens : #089ea4
+*/
+
+/* ---------------------- GENERAL ---------------------- */
+body
+{
+	font-family: champ_n_limo;
+	background-color: #f1f0f0;
+	font-size: 2em;
+}
+
+@font-face {
+    font-family: "champ_n_limo";
+    src: url("../fonts/champ_n_limo.woff") format('woff');
+}
+
+@font-face {
+    font-family: "champ_n_limo";
+    src: url("../fonts/champ_n_limo_bold.woff") format('woff');
+	font-weight: bold;
+}
+
+@font-face {
+    font-family: "champ_n_limo";
+    src: url("../fonts/champ_n_limo_italic.woff") format('woff');
+	font-style: italic;
+}
+
+@font-face {
+    font-family: "champ_n_limo";
+    src: url("../fonts/champ_n_limo_bold_italic.woff") format('woff');
+	font-style: italic;
+	font-style: italic;
+}
+
+
+/* ---------------------- HEADER ---------------------- */
+header .triangle {
+    width: 50%;
+    height: 0;
+    padding-left:50%;
+    padding-top: 270px;
+    overflow: hidden;
+	box-sizing: initial;
+}
+
+header .triangle:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    margin-left:-1000px;
+    margin-top:-270px;
+	box-sizing: initial;
+	
+    border-left: 1000px solid transparent;
+    border-right: 1000px solid transparent;
+    border-top: 270px solid #282828;
+}
+
+header .container
+{
+	position: relative;
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (max-width: 1199px) {
+	header .container
+	{
+		width: 100%;
+	}
+}
+
+header nav
+{
+	position: absolute;
+	z-index: 10;
+	width: 100%;
+	margin-left: -20px;
+	padding-left: 10px;
+}
+
+header nav .links
+{
+	display: inline-block;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+
+header nav .links ul
+{
+	list-style-type: none;
+	padding: 0;
+}
+
+header nav .links.right, header nav .links.right ul
+{
+	float: right;
+}
+
+header nav .links li
+{
+	padding-right: 8px;
+	padding-left: 3px;
+}
+
+
+/* Phone */
+@media (min-width: 768px) {
+	header nav .links li
+	{
+		display: inline-block;
+		border-right: 2px solid #e3e3e3;
+	}
+	
+	header nav .links li:nth-last-child(-n+2)
+	{
+		border-right: none;
+	}
+}
+
+header nav .links a
+{
+	color: #e3e3e3;
+	font-size: 1.3em;
+}
+
+header nav .logo
+{
+	margin-top: 9px;
+	background-image: url('../images/top_logo.png');
+	background-repeat: no-repeat;
+	background-position: 50% 0;
+	
+	height: 200px;
+	
+	min-width: 150px;
+	display: inline-block;
+	
+}
+
+header h1
+{
+	color: #e3e3e3;
+	margin-top: 150px;
+	text-align: center;
+	font-size: 58px;
+}
+
+header h2
+{
+	color: white;
+	text-align: center;
+	font-size: 18px;
+	margin-top: -16px;
+	padding-top: 0;
+}
+
+/* ---------------------- ARTICLE ---------------------- */
+article
+{
+	padding-top: 70px;
+	padding-bottom: 70px;
+	border-bottom: 2px solid #d3d2d2;
+}
+
+article:last-of-type
+{
+	border-bottom: none;
+}
+
+article:nth-child(2n+1)
+{
+	background-color: #dbf2e5;
+}
+
+article::after, article::before
+{
+	display: block;
+	content: "";
+	
+	margin: auto;
+	
+	width: 0; 
+	height: 0; 
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	
+	border-top: 20px solid #f1f0f0;
+	
+	position: relative;
+}
+
+article::after
+{
+	border-top-color: #f1f0f0;
+	top: 89px;
+	z-index: 1;
+}
+
+article::before
+{
+	border-top-color: #d3d2d2;
+	top: -70px;
+}
+
+
+article:nth-child(2n+1)::after
+{
+	border-top-color: #dbf2e5;
+}
+
+article:first-of-type::before
+{
+	display: none;
+}
+
+article:last-of-type::after
+{
+	display: none;
+}
+
+/* ---------------------- CONTENT ---------------------- */
+
+article p
+{
+	margin-top: 20px;
+	text-indent:50px;
+	text-align: justify;
+}
+
+/* ---------------------- FOOTER ---------------------- */
+footer
+{
+	min-height: 350px;
+	background-color: #282828;
+	padding-bottom: 50px;
+	padding-top: 50px;
+}
+
+footer nav a
+{
+	color: #e3e3e3;	
+}
+
+
+footer h3
+{
+	color: #e3e3e3;	
+}
