@@ -335,7 +335,23 @@ footer h3
 
 .btn:hover::after
 {
-	margin-top: -34px; /* 12 - 42 */
+	margin-top: -34px;
+}
+
+.btn:disabled, .btn:focus:disabled
+{
+	opacity: 1;
+	background-color: #cccccc;
+}
+
+.btn:disabled::before
+{
+	margin-top: -2px;
+}
+
+.btn:disabled::after
+{
+	margin-top: -34px;
 }
 
 /* ---------------------- TAGS ---------------------- */
@@ -364,7 +380,7 @@ article a
 /* ---------------------- SLIDER ---------------------- */
 .slider .slider-content
 {
-	overflow-x: hidden;
+	overflow: hidden;
 	margin: 0;
 	padding: 0;
 	display:inline-block;
@@ -392,6 +408,25 @@ article a
 	transition: margin-left 0.5s;
 }
 
+.slider .slider-nav button
+{
+	display: inline-block;
+	
+	width: 18px;
+	height: 18px;
+	
+	border: none;
+	background-color: #9b9b9b;
+	border-radius: 9px;
+	
+	transition: background-color 0.8s;
+}
+
+.slider .slider-nav button.current
+{
+	background-color: #3ef942;
+}
+
 .slider .slider-border
 {
 	width: 40px;
@@ -399,4 +434,9 @@ article a
 	height: 42px;
 	
 	vertical-align: middle;
+}
+
+.slider .slider-nav
+{
+	margin-left:50%;
 }
