@@ -338,7 +338,7 @@ footer h3
 	margin-top: -34px;
 }
 
-.btn:disabled, .btn:focus:disabled
+.btn:disabled, .btn:disabled:focus, .btn:disabled:hover
 {
 	opacity: 1;
 	background-color: #cccccc;
@@ -401,6 +401,7 @@ article a
 	margin: 0;
 	padding: 0;
 	display: inline-block;
+	vertical-align: top;
 }
 
 .slider .slider-content .slider-in > *:first-child
@@ -439,4 +440,18 @@ article a
 .slider .slider-nav
 {
 	margin-left:50%;
+}
+
+/* ---------------------- HOME PAGE ---------------------- */
+.newsContainer
+{
+	background-color: white;
+	border-bottom: 2px solid #7f7f7f;
+	padding: 30px;
+}
+
+.newsContainer img
+{
+	border: 12px solid #f1f0f0;
+	border-radius: 6px;
 }
