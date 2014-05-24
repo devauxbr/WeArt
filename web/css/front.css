@@ -259,3 +259,72 @@ footer h3
 {
 	color: #e3e3e3;	
 }
+
+/* ---------------------- BUTTON ---------------------- */
+.btn, .btn::before, .btn::after
+{
+	border-radius: 21px;
+	height: 42px;
+	border: none;
+}
+
+.btn::before, .btn::after
+{
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	z-index: -1;
+	width: 100%;
+	content: "";
+	display: block;
+	margin-left: -14px; /* parent's padding */
+	transition: margin-top 0.1s;
+}
+
+.btn::before
+{
+	background-color: #5cfa60;
+	margin-top: -7px;
+}
+
+.btn::after
+{
+	background-color: #91b091;
+	margin-top: -30px; /* 12 - 42 */
+	
+}
+
+.btn
+{
+	background-color: #29c72c;
+
+	font-size: 1.4em;
+	padding: 14px;
+	padding-top: 0;
+	font-weight: bold;
+	position: relative;
+	
+	transition: background-color 0.1s;
+	
+	margin-right: 15px;
+}
+
+.btn:focus
+{
+	background-color: #29d42c;
+}
+
+.btn:hover
+{
+	background-color: #29d42c;
+}
+
+.btn:hover::before
+{
+	margin-top: -2px;
+}
+
+.btn:hover::after
+{
+	margin-top: -34px; /* 12 - 42 */
+}
