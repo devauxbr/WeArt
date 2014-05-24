@@ -294,6 +294,12 @@ footer h3
 	
 }
 
+.out-bt
+{
+	position: relative;
+	z-index: 5;
+}
+
 .btn
 {
 	background-color: #29c72c;
@@ -350,4 +356,44 @@ span.tag
 article a
 {
 	color: #089ea4;
+}
+
+/* ---------------------- SLIDER ---------------------- */
+.slider .slider-content
+{
+	overflow-x: hidden;
+	margin: 0;
+	padding: 0;
+	display:inline-block;
+	width: calc(100% - 80px);
+	vertical-align: middle;
+}
+
+.slider .slider-content .slider-in
+{
+	width: 1000%;
+	margin: 0;
+	padding: 0;
+}
+
+.slider .slider-content .slider-in > *
+{
+	width: 10%;
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+}
+
+.slider .slider-content .slider-in > *:first-child
+{
+	transition: margin-left 0.5s;
+}
+
+.slider .slider-border
+{
+	width: 40px;
+	display:inline-block;
+	height: 42px;
+	
+	vertical-align: middle;
 }
