@@ -313,6 +313,9 @@ footer h3
 	transition: background-color 0.1s;
 	
 	margin-right: 15px;
+	
+	margin-top: 7px;
+	margin-bottom: 12px;
 }
 
 .btn:focus
