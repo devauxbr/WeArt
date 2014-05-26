@@ -10,11 +10,16 @@
 	{# Jquery everywhere #}
 	<script src="{{ asset('js/ext/jquery.slides.min.js') }}"></script>
 	<script src="{{ asset('js/mySlider.js') }}"></script>
+	<script src="{{ asset('js/magicBox.js') }}"></script>
 	
 	<script>
 		$(function(){
 			$(".slider").each(function() {
 				new wa.Slider($(this));
+			});
+			
+			$(".magic-box").each(function() {
+				new wa.MagicBox($(this));
 			});
 		});
 	</script>
@@ -180,9 +185,9 @@
 			<div class="col-md-4">
 				<div class="magic-box">
 					<div class="off">
-						<span class="period">Thème de la semaine</span>
-						<h4>Le rève</h4>
-						<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						<span class="period">Thème de la semaine dernière</span>
+						<h4>Les nuages</h4>
+						<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 					</div>
 					<div>
 						<span class="period">Thème de la semaine</span>
@@ -190,8 +195,8 @@
 						<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 					</div>
 					<div class="off">
-						<span class="period">Thème de la semaine</span>
-						<h4>Le rève</h4>
+						<span class="period">Thème de la semaine suivante</span>
+						<h4>Le froid</h4>
 						<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 					</div>
 				</div>
