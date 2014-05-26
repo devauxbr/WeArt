@@ -471,3 +471,51 @@ article a
 	width: 100%;
 	max-width: 310px;
 }
+
+
+/* ---------------------- MAGIC BOX ---------------------- */
+
+.magic-box h4
+{
+	font-size: 2em;
+	text-align: center;
+}
+
+.magic-box > div > .period
+{
+	display: block;
+	text-align: center;
+}
+
+.magic-box
+{
+	margin-left: 25px;
+	margin-right: 25px;
+}
+
+.magic-box > div
+{
+	background-color: white;
+	padding: 20px;
+	border-bottom: 2px solid #7f7f7f;
+}
+
+.magic-box > div.off
+{
+	background-color: #f1f0f0;
+	width: 90%;
+	margin: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.magic-box > div h4, .magic-box > div p
+{
+	transition: background-color 0.8s;
+}
+
+.magic-box > div.off h4, .magic-box > div.off p
+{
+	display: none;
+	opacity: 0;
+}
