@@ -16,6 +16,11 @@ wa.Slider = new dejavu.Class.declare({
 	_currentSlide: 0,
 
 	initialize: function(root) {
+		if(root.length !== 1)
+		{
+			throw 'One an only one element should be provided to Slider';
+		}
+		
 		this._root = root;
 		
 		this._firstSlide = 
