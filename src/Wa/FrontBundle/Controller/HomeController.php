@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Wa\FrontBundle\Entity\Article;
 use Wa\FrontBundle\Entity\Discipline;
 use Wa\FrontBundle\Entity\Idea;
+use Wa\FrontBundle\Form\IdeaType;
 
 class HomeController extends Controller
 {
@@ -16,13 +17,18 @@ class HomeController extends Controller
 		$articleRepo = $em->getRepository('WaFrontBundle:Article');
 		
 		$articles = $articleRepo->findAll();
+                
+                $idea = new Idea;
+                $form = $this->createForm(new IdeaType, $idea);
 		
-        return $this->render('WaFrontBundle:Home:listArticle.html.twig',
-				array('articles' => $articles));
+        return $this->render('WaFrontBundle:Home:index.html.twig',
+				array('articles' => $articles, 'form' => $form->createView()));
     }
 	
     public function indexAction()
     {
+                $idea = new Idea;
+                $form = $this->createForm(new IdeaType, $idea);
 		return $this->render('WaFrontBundle:Home:index.html.twig');
     }
 	
