@@ -21,3 +21,4 @@ wa_create_test_user:
 wa_add_idea:
     pattern: /add_idea
     defaults: { _controller: WaFrontBundle:Home:addIdea }
+
