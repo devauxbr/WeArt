@@ -1,3 +1,8 @@
+wa_admin:
+    resource: "@WaAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 wa_member:
     resource: "@WaMemberBundle/Controller/"
     type:     annotation
