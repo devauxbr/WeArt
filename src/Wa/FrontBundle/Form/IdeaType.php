@@ -17,6 +17,11 @@ class IdeaType extends AbstractType
         $builder
             ->add('title', 'text')
             ->add('description', 'textarea')
+            //->add('discipline','text') TODO
+            //->add('tags','text') TODO
+            ->add('theme', 'text')
+            ->add('account','text')
+            //->add('uploads','file')
         ;
     }
     
