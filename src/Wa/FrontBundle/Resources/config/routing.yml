@@ -14,3 +14,6 @@ wa_test:
     pattern: /test
     defaults: { _controller: WaFrontBundle:Home:test }
     
+wa_add_idea:
+    pattern: /add_idea
+    defaults: { _controller: WaFrontBundle:Home:addIdea }

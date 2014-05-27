@@ -68,4 +68,27 @@ class HomeController extends Controller
         
         return $this->render('WaFrontBundle:Home:addArticle.html.twig');
     }
+    
+    public function addIdeaAction()
+    {
+        $idea = new Idea();
+        $form = $this->createForm(new IdeaType, $idea);
+        $request = $this->get('request');
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($idea);
+            $em->flush();
+            
+            /* TODO modifier le retour */ 
+            return $this->redirect($this->generateUrl('sdzblog_accueil'));
+        }
+    }
+
+    return $this->render('WaFrontBundle:Idea:addIdea.html.twig', array(
+        'form' => $form->createView(),
+    ));
+    }
 }
