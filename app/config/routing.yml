@@ -1,6 +1,5 @@
 wa_admin:
-    resource: "@WaAdminBundle/Controller/"
-    type:     annotation
+    resource: "@WaAdminBundle/Resources/config/routing.yml"
     prefix:   /
 
 wa_member:

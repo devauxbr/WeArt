@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+use \Wa\FrontBundle\Entity\Theme;
+
 class ThemeType extends AbstractType
 {
         /**
@@ -17,11 +19,8 @@ class ThemeType extends AbstractType
         $builder
             ->add('title', 'text')
             ->add('description', 'textarea')
-            //->add('discipline','text') TODO
-            //->add('tags','text') TODO
-            ->add('theme', 'text')
-            ->add('account','text')
-            //->add('uploads','file')
+            ->add('startDate', 'datetime')
+            ->add('endDate','datetime')
         ;
     }
     
@@ -31,7 +30,7 @@ class ThemeType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Wa\FrontBundle\Entity\Idea'
+            'data_class' => 'Wa\FrontBundle\Entity\Theme'
         ));
     }
 
@@ -40,6 +39,6 @@ class ThemeType extends AbstractType
      */
     public function getName()
     {
-        return 'wa_frontbundle_idea';
+        return 'wa_memberbundle_theme';
     }
 }
