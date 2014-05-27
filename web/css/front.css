@@ -474,8 +474,11 @@ article a
 
 .stepsSizer img
 {
+	display: block;
 	width: 100%;
 	max-width: 310px;
+	margin: auto;
+	
 }
 
 
