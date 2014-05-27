@@ -14,3 +14,6 @@ wa_test:
     pattern: /test
     defaults: { _controller: WaFrontBundle:Home:test }
     
+wa_create_test_user:
+    pattern: /create_test_user
+    defaults: { _controller: WaFrontBundle:Home:createTestUser }

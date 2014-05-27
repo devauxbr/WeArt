@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Wa\FrontBundle\Entity\Article;
 use Wa\FrontBundle\Entity\Discipline;
 use Wa\FrontBundle\Entity\Idea;
+use Wa\MemberBundle\Entity\Account;
 use Wa\FrontBundle\Form\IdeaType;
 
 class HomeController extends Controller
@@ -64,6 +65,24 @@ class HomeController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($discipline);
         $em->persist($idea);
+        $em->flush();
+        
+        return $this->render('WaFrontBundle:Home:addArticle.html.twig');
+    }
+    
+    public function createTestUserAction()
+    {
+        $account = new Account();
+        $account->setUsername('bdevaux');
+        $account->setPassword('password');
+        $account->setEnabled(true);
+        $account->setRoles(array());
+        $account->setPoint(0);
+        $account->setEmail('devaux.br@gmail.com');
+        
+        
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($account);
         $em->flush();
         
         return $this->render('WaFrontBundle:Home:addArticle.html.twig');
