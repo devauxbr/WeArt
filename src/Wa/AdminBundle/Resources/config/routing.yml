@@ -1,8 +1,12 @@
+wa_admin_homepage:
+    pattern:  /
+    defaults: { _controller: WaAdminBundle:Admin:index }
+    
 wa_add_article:
     pattern: /add_article
-    defaults: { _controller: WaAdminBundle:Default:addArticle }
+    defaults: { _controller: WaAdminBundle:Admin:addArticle }
 
 wa_add_theme:
     pattern: /add_theme
-    defaults: { _controller: WaAdminBundle:Default:addTheme }
+    defaults: { _controller: WaAdminBundle:Admin:addTheme }
     

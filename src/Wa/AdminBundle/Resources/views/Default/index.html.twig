@@ -1,1 +1,16 @@
-Hello {{ name }}!
+{% extends "::front.html.twig" %}
+
+{% block title %}
+	{{ parent() }}Espace d'administration
+{% endblock %}
+
+{% block content %}
+    <h1>Espace d'admninistration</h1>
+    <p>
+        <a href="{{ path('wa_add_article') }}">Ajouter un article</a>
+    </p>
+    <p>
+        <a href="{{ path('wa_add_theme') }}">Ajouter un thème</a>
+    </p>
+{% endblock %}
+

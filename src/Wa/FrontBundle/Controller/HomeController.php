@@ -25,8 +25,6 @@ class HomeController extends Controller {
     }
 
     public function indexAction() {
-        $idea = new Idea;
-        $form = $this->createForm(new IdeaType, $idea);
         return $this->render('WaFrontBundle:Home:index.html.twig');
     }
 
