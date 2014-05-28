@@ -1,38 +1,66 @@
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
+        Wa\MemberBundle\Entity\Account : sha512
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        in_memory:
-            memory:
-                users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        main:
+            id: fos_user.user_provider.username
 
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
-        login:
-            pattern:  ^/demo/secured/login$
-            security: false
-
-        secured_area:
-            pattern:    ^/demo/secured/
+            
+        main:
+            pattern:   ^/
+            anonymous: true
+            provider:  main
             form_login:
-                check_path: _security_check
-                login_path: _demo_login
+                # l'utilisateur est redirigé ici quand il/elle a besoin de se connecter
+                login_path:                     fos_user_security_login
+
+                # si défini à true, « forward » l'utilisateur vers le formulaire de
+                # login au lieu de le rediriger
+                use_forward:                    false
+
+                # soumet le formulaire de login vers cette URL
+                check_path:                     fos_user_security_check
+
+                # par défaut, le formulaire de login *doit* être un POST,
+                # et pas un GET
+                post_only:                      true
+
+                # options de redirection lorsque le login a réussi (vous
+                # pouvez en lire plus ci-dessous)
+                always_use_default_target_path: false
+                default_target_path:            /
+                target_path_parameter:          _target_path
+                use_referer:                    false
+
+                # options de redirection lorsque le login échoue (vous
+                # pouvez en lire plus ci-dessous)
+                failure_path:                   null
+                failure_forward:                false
+
+                # noms des champs pour le nom d'utilisateur et le mot
+                # de passe
+                username_parameter:             _username
+                password_parameter:             _password
+
+                # options du token csrf
+                csrf_parameter:                 _csrf_token
+                intention:                      authenticate
             logout:
-                path:   _demo_logout
-                target: _demo
-            #anonymous: ~
-            #http_basic:
-            #    realm: "Secured Demo Area"
+                path:   fos_user_security_logout
+                target: /
+            remember_me:
+                key:        %secret%
+
 
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

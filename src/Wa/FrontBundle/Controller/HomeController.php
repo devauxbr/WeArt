@@ -6,34 +6,31 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Wa\FrontBundle\Entity\Article;
 use Wa\FrontBundle\Entity\Discipline;
 use Wa\FrontBundle\Entity\Idea;
+use Wa\MemberBundle\Entity\Account;
 use Wa\FrontBundle\Form\IdeaType;
 
-class HomeController extends Controller
-{
-	public function listArticleAction()
-    {
-		
-		$em = $this->getDoctrine()->getManager();
-		$articleRepo = $em->getRepository('WaFrontBundle:Article');
-		
-		$articles = $articleRepo->findAll();
-                
-                $idea = new Idea;
-                $form = $this->createForm(new IdeaType, $idea);
-		
-        return $this->render('WaFrontBundle:Home:index.html.twig',
-				array('articles' => $articles, 'form' => $form->createView()));
+class HomeController extends Controller {
+
+    public function listArticleAction() {
+
+        $em = $this->getDoctrine()->getManager();
+        $articleRepo = $em->getRepository('WaFrontBundle:Article');
+
+        $articles = $articleRepo->findAll();
+
+        $idea = new Idea;
+        $form = $this->createForm(new IdeaType, $idea);
+
+        return $this->render('WaFrontBundle:Home:index.html.twig', array('articles' => $articles, 'form' => $form->createView()));
     }
-	
-    public function indexAction()
-    {
-                $idea = new Idea;
-                $form = $this->createForm(new IdeaType, $idea);
-		return $this->render('WaFrontBundle:Home:index.html.twig');
+
+    public function indexAction() {
+        $idea = new Idea;
+        $form = $this->createForm(new IdeaType, $idea);
+        return $this->render('WaFrontBundle:Home:index.html.twig');
     }
-	
-    public function addArticleAction()
-    {
+
+    public function addArticleAction() {
         $article = new Article();
         $article->setTitle('Une autre news');
         $article->setContent('Le contenu');
@@ -47,48 +44,64 @@ class HomeController extends Controller
 
         return $this->render('WaFrontBundle:Home:addArticle.html.twig');
     }
-    
-    public function testAction()
-    {
+
+    public function testAction() {
         $idea = new Idea();
         $idea->setTitle('The title');
         $idea->setDescription('dqfsdfjsfksdfjksdf');
         $idea->setVoteNumber(0);
-        
+
         $discipline = new Discipline();
         $discipline->setTitle('sdfhsdfohzi');
         $discipline->setDescription('Something');
-        
+
         $idea->setDiscipline($discipline);
-        
+
         $em = $this->getDoctrine()->getManager();
         $em->persist($discipline);
         $em->persist($idea);
         $em->flush();
-        
+
         return $this->render('WaFrontBundle:Home:addArticle.html.twig');
     }
-    
-    public function addIdeaAction()
-    {
+
+    public function createTestUserAction() {
+        $account = new Account();
+        $account->setUsername('bdevaux');
+        $account->setPassword('password');
+        $account->setEnabled(true);
+        $account->setRoles(array());
+        $account->setPoint(0);
+        $account->setEmail('devaux.br@gmail.com');
+
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($account);
+        $em->flush();
+
+        return $this->render('WaFrontBundle:Home:addArticle.html.twig');
+    }
+
+    public function addIdeaAction() {
         $idea = new Idea();
         $form = $this->createForm(new IdeaType, $idea);
         $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($idea);
-            $em->flush();
-            
-            /* TODO modifier le retour */ 
-            return $this->redirect($this->generateUrl('sdzblog_accueil'));
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($idea);
+                $em->flush();
+
+                /* TODO modifier le retour */
+                return $this->redirect($this->generateUrl('sdzblog_accueil'));
+            }
         }
+
+        return $this->render('WaFrontBundle:Idea:addIdea.html.twig', array(
+                    'form' => $form->createView(),
+        ));
     }
 
-    return $this->render('WaFrontBundle:Idea:addIdea.html.twig', array(
-        'form' => $form->createView(),
-    ));
-    }
 }

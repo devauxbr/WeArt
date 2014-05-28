@@ -3,7 +3,7 @@
 namespace Wa\MemberBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use \Wa\FrontBundle\Entity\ArtWork;
+use FOS\UserBundle\Entity\User as BaseUser;
 
 /**
  * Account
@@ -11,7 +11,7 @@ use \Wa\FrontBundle\Entity\ArtWork;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Wa\MemberBundle\Repository\AccountRepository")
  */
-class Account
+class Account extends BaseUser
 {
     /**
      * @var integer
@@ -20,21 +20,7 @@ class Account
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="pseudonym", type="string", length=255)
-     */
-    private $pseudonym;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mail", type="string", length=255)
-     */
-    private $mail;
+    protected $id;
 
     /**
      * @var integer
@@ -42,14 +28,6 @@ class Account
      * @ORM\Column(name="point", type="integer")
      */
     private $point;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="autorisation", type="integer")
-     */
-    private $autorisation;
-
     
     /**
      *
@@ -84,7 +62,6 @@ class Account
      */
     private $artWork;
     
-    
     /**
      * Get id
      *
@@ -93,52 +70,6 @@ class Account
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set pseudonym
-     *
-     * @param string $pseudonym
-     * @return Account
-     */
-    public function setPseudonym($pseudonym)
-    {
-        $this->pseudonym = $pseudonym;
-
-        return $this;
-    }
-
-    /**
-     * Get pseudonym
-     *
-     * @return string 
-     */
-    public function getPseudonym()
-    {
-        return $this->pseudonym;
-    }
-
-    /**
-     * Set mail
-     *
-     * @param string $mail
-     * @return Account
-     */
-    public function setMail($mail)
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    /**
-     * Get mail
-     *
-     * @return string 
-     */
-    public function getMail()
-    {
-        return $this->mail;
     }
 
     /**
@@ -165,35 +96,16 @@ class Account
     }
 
     /**
-     * Set autorisation
-     *
-     * @param integer $autorisation
-     * @return Account
-     */
-    public function setAutorisation($autorisation)
-    {
-        $this->autorisation = $autorisation;
-
-        return $this;
-    }
-
-    /**
-     * Get autorisation
-     *
-     * @return integer 
-     */
-    public function getAutorisation()
-    {
-        return $this->autorisation;
-    }
-    /**
      * Constructor
      */
     public function __construct()
     {
+        parent::__construct();
+
         $this->ideas = new \Doctrine\Common\Collections\ArrayCollection();
         $this->votes = new \Doctrine\Common\Collections\ArrayCollection();
         $this->article = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->setPoint(0);
     }
 
     /**
