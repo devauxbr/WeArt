@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Wa\FrontBundle\WaFrontBundle(),
             new Wa\MemberBundle\WaMemberBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Wa\AdminBundle\WaAdminBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,0 +1,8 @@
+wa_add_article:
+    pattern: /add_article
+    defaults: { _controller: WaAdminBundle:Default:addArticle }
+
+wa_add_theme:
+    pattern: /add_theme
+    defaults: { _controller: WaAdminBundle:Default:addTheme }
+    
