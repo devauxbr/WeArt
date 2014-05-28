@@ -2,7 +2,7 @@
 
 wa_admin:
     resource: "@WaAdminBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /admin
     
 wa_member:
     resource: "@WaMemberBundle/Controller/"
