@@ -1,12 +1,12 @@
 <?php
 
-namespace Wa\AdminBundle\Form;
+namespace Wa\FrontBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ThemeType extends AbstractType
+class IdeaType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
