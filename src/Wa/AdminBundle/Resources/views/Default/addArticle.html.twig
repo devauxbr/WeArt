@@ -1,0 +1,17 @@
+{% extends "::front.html.twig" %}
+
+{% block title %}
+	{{ parent() }}Ajout Article
+{% endblock %}
+
+{% block content %}
+
+<h3>Ajouter d'un article</h3>
+
+<div class="well">
+  <form method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <input type="submit" class="btn btn-primary" />
+  </form>
+</div>
+{% endblock %}

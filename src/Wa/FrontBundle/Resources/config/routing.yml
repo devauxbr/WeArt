@@ -6,7 +6,7 @@ wa_front_news:
     pattern:  /list
     defaults: { _controller: WaFrontBundle:Home:listArticle }
 
-wa_add_article:
+wa_add_test_article:
     pattern: /add
     defaults: { _controller: WaFrontBundle:Home:addArticle }
 
