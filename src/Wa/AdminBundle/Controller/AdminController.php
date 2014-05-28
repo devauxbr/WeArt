@@ -10,18 +10,18 @@ use \Wa\FrontBundle\Entity\Article;
 use Wa\AdminBundle\Form\ThemeType;
 use Wa\AdminBundle\Form\ArticleType;
 
-class DefaultController extends Controller {
+class AdminController extends Controller {
 
     /**
      * @Route("/hello/{name}")
      * @Template()
      */
-    public function indexAction($name) {
-        return array('name' => $name);
+    public function indexAction() {
+        return $this->render('WaAdminBundle:Default:index.html.twig');
     }
     
     public function addArticleAction() {
-        $article = new article();
+        $article = new Article();
         $form = $this->createForm(new ArticleType, $article);
         $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
@@ -63,6 +63,4 @@ class DefaultController extends Controller {
                     'form' => $form->createView(),
         ));
     }
-
-
 }
