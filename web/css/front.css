@@ -167,25 +167,25 @@ header h2
 	padding-top: 0;
 }
 
-/* ---------------------- ARTICLE ---------------------- */
-article
+/* ---------------------- WA BLOCK ---------------------- */
+.waBlock
 {
 	padding-top: 70px;
 	padding-bottom: 70px;
 	border-bottom: 2px solid #d3d2d2;
 }
 
-article:last-of-type
+.waBlock:last-of-type
 {
 	border-bottom: none;
 }
 
-article:nth-child(2n+1)
+.waBlock:nth-child(2n+1)
 {
 	background-color: #dbf2e5;
 }
 
-article::after, article::before
+.waBlock::after, .waBlock::before
 {
 	display: block;
 	content: "";
@@ -202,38 +202,38 @@ article::after, article::before
 	position: relative;
 }
 
-article::after
+.waBlock::after
 {
 	border-top-color: #f1f0f0;
 	top: 89px;
 	z-index: 1;
 }
 
-article::before
+.waBlock::before
 {
 	border-top-color: #d3d2d2;
 	top: -70px;
 }
 
 
-article:nth-child(2n+1)::after
+.waBlock:nth-child(2n+1)::after
 {
 	border-top-color: #dbf2e5;
 }
 
-article:first-of-type::before
+.waBlock:first-of-type::before
 {
 	display: none;
 }
 
-article:last-of-type::after
+.waBlock:last-of-type::after
 {
 	display: none;
 }
 
 /* ---------------------- CONTENT ---------------------- */
 
-article p
+.waBlock p
 {
 	margin-top: 20px;
 	text-indent:50px;
@@ -372,7 +372,7 @@ span.tag
 	margin-right: 15px;
 }
 
-article a
+.waBlock a
 {
 	color: #089ea4;
 }
@@ -557,4 +557,49 @@ article a
 .magic-box > div:not(.off)
 {
 	margin-top: -2px;
+}
+
+/* ---------------------- FORMS ---------------------- */
+form
+{
+	width: 50%;
+	margin: auto;
+}
+
+form input[type="email"], form input[type="text"], form input[type="password"],
+		form input[type="file"]
+{
+	display: inline-block;
+	width: 48%;
+	height: 42px;
+	border-radius: 21px;
+	padding: 6px;
+	padding-left: 15px;
+	padding-right: 15px;
+	
+	border: 3px solid #29c72c;
+	
+
+	border-right-color: #008403;
+	border-bottom-color: #008403;
+	background-color: white;
+	
+	font-weight: bold;
+	color: #008403;
+}
+
+form input[type="reset"], form input[type="button"], form input[type="submit"],
+		form button.btn
+{
+	display: block;
+	margin-top: 50px;
+	margin-left: 48%;
+}
+
+form label
+{
+	display: inline-block;
+	width: 48%;
+	
+	margin-top: 40px;
 }
