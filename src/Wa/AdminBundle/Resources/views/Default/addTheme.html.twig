@@ -6,12 +6,12 @@
 
 {% block content %}
 
-<h3>Ajouter un thème de le semaine</h3>
+<h3>Ajouter un thème de la semaine</h3>
 
 <div class="well">
-  <form method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
-    <input type="submit" class="btn btn-primary" />
-  </form>
+	<form method="post" {{ form_enctype(form) }}>
+		{{ form_widget(form) }}
+		<span class="out-bt"><button type="submit" class="btn btn-primary">Ajouter</button></span>
+	</form>
 </div>
 {% endblock %}

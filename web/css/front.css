@@ -562,14 +562,12 @@ span.tag
 /* ---------------------- FORMS ---------------------- */
 form
 {
-	width: 50%;
 	margin: auto;
 }
 
 form input[type="email"], form input[type="text"], form input[type="password"],
 		form input[type="file"]
 {
-	display: inline-block;
 	width: 48%;
 	height: 42px;
 	border-radius: 21px;
@@ -591,15 +589,31 @@ form input[type="email"], form input[type="text"], form input[type="password"],
 form input[type="reset"], form input[type="button"], form input[type="submit"],
 		form button.btn
 {
-	display: block;
 	margin-top: 50px;
 	margin-left: 48%;
 }
 
 form label
 {
-	display: inline-block;
 	width: 48%;
-	
+	font-weight: normal;
 	margin-top: 40px;
+	font-size: 1.1em;
+}
+
+/* ---------------------- FORM TIPS ---------------------- */
+aside.tips p
+{
+
+}
+
+aside.tips p .glyphicon
+{
+	position: relative;
+	top: 3px;
+}
+
+aside.tips span.question
+{
+	margin-left: 50px;
 }
