@@ -26,7 +26,44 @@
 {% endblock %}
 
 {% block content %}
+    <!-- TODO : RETIRER CETTE PARTIE !!!! -->
+    <h1>Articles</h1>
+    {% for article in articles %}
+        <h2>
+            {{ article.title }}
+        </h2>
+        <p>
+            {{ article.content }}
+        </p>
+    {% endfor %}
     
+    <h1>Themes</h1>
+    {% for theme in themes %}
+        <h2>
+            {{ theme.title }}
+        </h2>
+        <h2>
+            Week : {{ theme.week }}
+        </h2>
+        <p>
+            {{ theme.description }}
+        </p>
+    {% endfor %}
+    
+    <h1>Top Ideas</h1>
+    {% for idea in topIdeas %}
+        <h2>
+            {{ idea.title }}
+        </h2>
+        <p>
+            {{ idea.description }}
+        </p>
+    {% endfor %}
+    
+    
+    
+    
+    <!-- FIN PARTIE À RETIRER!!! -->
 	<article class="waBlock">
 		<div class="container">
 			<div class="col-md-1"></div>

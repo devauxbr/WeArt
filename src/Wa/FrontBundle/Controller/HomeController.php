@@ -11,73 +11,50 @@ use Wa\FrontBundle\Form\IdeaType;
 
 class HomeController extends Controller {
 
-    public function listArticleAction() {
-
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
         $articleRepo = $em->getRepository('WaFrontBundle:Article');
-
-        $articles = $articleRepo->findAll();
-
-        $idea = new Idea;
-        $form = $this->createForm(new IdeaType, $idea);
-
-        return $this->render('WaFrontBundle:Home:index.html.twig', array('articles' => $articles, 'form' => $form->createView()));
+        
+        // select 5 latest articles :
+        $articles = $articleRepo->findBy(
+                array('published' => true),
+                array('createDate' => 'ASC'),
+                5);
+        
+        // TODO : on affiche juste la semaine précédente et suivante ? ou bien on rend 
+        // dynamique pour afficher toutes les précédentes et toutes les suivantes ?
+        // (pour cela il faudrait faire du ajax ... ?)
+        $indexThemes = $em->getRepository('WaFrontBundle:Theme')->getIndexThemes();
+        
+        // select today top ideas
+        $topIdeas = $em->getRepository('WaFrontBundle:Idea')->getTodayTopIdea();
+        
+        return $this->render('WaFrontBundle:Home:index.html.twig',
+                array(
+                    'articles' => $articles,
+                    'themes' => $indexThemes,
+                    'topIdeas' => $topIdeas,
+                    ));
     }
-
-    public function indexAction() {
-        return $this->render('WaFrontBundle:Home:index.html.twig');
-    }
-
-    public function addArticleAction() {
-        $article = new Article();
-        $article->setTitle('Une autre news');
-        $article->setContent('Le contenu');
-        $article->setCreateDate(new \DateTime());
-        $article->setEditDate(new \DateTime());
-        $article->setPublished(true);
-
+    
+    public function consultationAction() {
+        // TODO : quelles limites de selection pour chaque collection d'entité à retourner ?
         $em = $this->getDoctrine()->getManager();
-        $em->persist($article);
-        $em->flush();
-
-        return $this->render('WaFrontBundle:Home:addArticle.html.twig');
-    }
-
-    public function testAction() {
-        $idea = new Idea();
-        $idea->setTitle('The title');
-        $idea->setDescription('dqfsdfjsfksdfjksdf');
-        $idea->setVoteNumber(0);
-
-        $discipline = new Discipline();
-        $discipline->setTitle('sdfhsdfohzi');
-        $discipline->setDescription('Something');
-
-        $idea->setDiscipline($discipline);
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($discipline);
-        $em->persist($idea);
-        $em->flush();
-
-        return $this->render('WaFrontBundle:Home:addArticle.html.twig');
-    }
-
-    public function createTestUserAction() {
-        $account = new Account();
-        $account->setUsername('bdevaux');
-        $account->setPassword('password');
-        $account->setEnabled(true);
-        $account->setRoles(array());
-        $account->setPoint(0);
-        $account->setEmail('devaux.br@gmail.com');
-
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($account);
-        $em->flush();
-
-        return $this->render('WaFrontBundle:Home:addArticle.html.twig');
+        
+        // select week's theme
+        $themeSemaine = $em->getRepository('WaFrontBundle:Theme')->findOneByStartDate();
+        
+        $ideaRepo = $em->getRepository('WaFrontBundle:Idea');
+        // select today and week top ideas :
+        $todayTopIdeas = $ideaRepo->getTodayTopIdea();
+        $weekTopIdeas = $ideaRepo->getWeekTopIdea();
+        
+        return $this->render('WaFrontBundle:Home:consultation.html.twig',
+                array(
+                    'themeSemaine' => $themeSemaine,
+                    'todayTopIdeas' => $todayTopIdeas,
+                    'weekTopIdeas' => $weekTopIdeas,
+                    ));
     }
 
     public function addIdeaAction() {
@@ -92,8 +69,8 @@ class HomeController extends Controller {
                 $em->persist($idea);
                 $em->flush();
 
-                /* TODO modifier le retour */
-                return $this->redirect($this->generateUrl('sdzblog_accueil'));
+                /* TODO modifier le retour pour mettre la page de consultation de l'idée crée ! */
+                return $this->redirect($this->generateUrl('wa_front_homepage'));
             }
         }
 
