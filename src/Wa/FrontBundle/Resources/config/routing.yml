@@ -2,23 +2,9 @@ wa_front_homepage:
     pattern:  /
     defaults: { _controller: WaFrontBundle:Home:index }
 
-wa_front_news:
-    pattern:  /list
-    defaults: { _controller: WaFrontBundle:Home:listArticle }
-
-wa_add_test_article:
-    pattern: /add
-    defaults: { _controller: WaFrontBundle:Home:addArticle }
-
-wa_test:
-    pattern: /test
-    defaults: { _controller: WaFrontBundle:Home:test }
-    
-wa_create_test_user:
-    pattern: /create_test_user
-    defaults: { _controller: WaFrontBundle:Home:createTestUser }
-    
 wa_add_idea:
     pattern: /add_idea
     defaults: { _controller: WaFrontBundle:Home:addIdea }
+
+
 
