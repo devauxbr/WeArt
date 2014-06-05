@@ -50,7 +50,7 @@ header .triangle {
     width: 50%;
     height: 0;
     padding-left:50%;
-    padding-top: 270px;
+    padding-top: 240px;
     overflow: hidden;
 	box-sizing: initial;
 }
@@ -61,12 +61,12 @@ header .triangle:after {
     width: 0;
     height: 0;
     margin-left:-1000px;
-    margin-top:-270px;
+    margin-top:-240px;
 	box-sizing: initial;
 	
     border-left: 1000px solid transparent;
     border-right: 1000px solid transparent;
-    border-top: 270px solid #282828;
+    border-top: 240px solid #282828;
 }
 
 header .container
@@ -138,7 +138,7 @@ header nav .links a
 
 header nav .logo
 {
-	margin-top: 9px;
+	margin-top: 3px;
 	background-image: url('../images/top_logo.png');
 	background-repeat: no-repeat;
 	background-position: 50% 0;
@@ -153,7 +153,7 @@ header nav .logo
 header h1
 {
 	color: #e3e3e3;
-	margin-top: 150px;
+	margin-top: 145px;
 	text-align: center;
 	font-size: 58px;
 }
@@ -163,15 +163,15 @@ header h2
 	color: white;
 	text-align: center;
 	font-size: 18px;
-	margin-top: -16px;
+	margin-top: -22px;
 	padding-top: 0;
 }
 
 /* ---------------------- WA BLOCK ---------------------- */
 .waBlock
 {
-	padding-top: 70px;
-	padding-bottom: 70px;
+	padding-top: 40px;
+	padding-bottom: 40px;
 	border-bottom: 2px solid #d3d2d2;
 }
 
@@ -205,14 +205,14 @@ header h2
 .waBlock::after
 {
 	border-top-color: #f1f0f0;
-	top: 89px;
+	top: 59px;
 	z-index: 1;
 }
 
 .waBlock::before
 {
 	border-top-color: #d3d2d2;
-	top: -70px;
+	top: -40px;
 }
 
 
