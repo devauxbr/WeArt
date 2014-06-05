@@ -64,6 +64,11 @@ class Article
      */
     private $account;
 
+    public function __construct()
+    {
+        $this->setCreateDate(new \DateTime());
+        $this->setEditDate(new \DateTime());
+    }
 
     /**
      * Get id

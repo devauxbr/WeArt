@@ -36,18 +36,18 @@ class Theme
     private $description;
 
     /**
-     * @var \DateTime
+     * @var integer
      *
-     * @ORM\Column(name="startDate", type="datetime")
+     * @ORM\Column(name="year", type="integer")
      */
-    private $startDate;
+    private $year;
 
     /**
-     * @var \DateTime
+     * @var integer
      *
-     * @ORM\Column(name="endDate", type="datetime")
+     * @ORM\Column(name="endDate", type="integer")
      */
-    private $endDate;
+    private $week;
 
     /**
      *
@@ -114,50 +114,51 @@ class Theme
     }
 
     /**
-     * Set startDate
+     * Set year
      *
-     * @param \DateTime $startDate
+     * @param integer $year
      * @return Theme
      */
-    public function setStartDate($startDate)
+    public function setYear($year)
     {
-        $this->startDate = $startDate;
+        $this->year = $year;
 
         return $this;
     }
 
     /**
-     * Get startDate
+     * Get year
      *
-     * @return \DateTime 
+     * @return integer 
      */
-    public function getStartDate()
+    public function getYear()
     {
-        return $this->startDate;
+        return $this->year;
     }
 
     /**
-     * Set endDate
+     * Set week
      *
-     * @param \DateTime $endDate
+     * @param integer $week
      * @return Theme
      */
-    public function setEndDate($endDate)
+    public function setWeek($week)
     {
-        $this->endDate = $endDate;
+        $this->week = $week;
 
         return $this;
     }
 
     /**
-     * Get endDate
+     * Get week
      *
-     * @return \DateTime 
+     * @return integer 
      */
-    public function getEndDate()
+    public function getWeek()
     {
-        return $this->endDate;
+        return $this->week;
     }
+    
     /**
      * Constructor
      */

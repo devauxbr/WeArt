@@ -32,8 +32,7 @@ class AdminController extends Controller {
                 $em->persist($article);
                 $em->flush();
 
-                /* TODO modifier le retour */
-                return $this->redirect($this->generateUrl('sdzblog_accueil'));
+                return $this->redirect($this->generateUrl('wa_admin_homepage'));
             }
         }
 
@@ -54,8 +53,7 @@ class AdminController extends Controller {
                 $em->persist($theme);
                 $em->flush();
 
-                /* TODO modifier le retour */
-                return $this->redirect($this->generateUrl('sdzblog_accueil'));
+                return $this->redirect($this->generateUrl('wa_admin_homepage'));
             }
         }
 

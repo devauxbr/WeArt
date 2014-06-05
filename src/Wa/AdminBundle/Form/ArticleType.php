@@ -19,8 +19,6 @@ class ArticleType extends AbstractType
         $builder
             ->add('title', 'text')
             ->add('content', 'textarea')
-            ->add('createDate', 'datetime')
-            ->add('editDate','datetime')
             ->add('published','checkbox')
         ;
     }
