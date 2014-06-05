@@ -2,6 +2,10 @@ wa_front_homepage:
     pattern:  /
     defaults: { _controller: WaFrontBundle:Home:index }
 
+wa_front_consultation:
+    pattern:  /list
+    defaults: { _controller: WaFrontBundle:Home:consultation }
+    
 wa_add_idea:
     pattern: /add_idea
     defaults: { _controller: WaFrontBundle:Home:addIdea }
