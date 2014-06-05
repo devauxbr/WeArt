@@ -45,7 +45,7 @@ class Theme
     /**
      * @var integer
      *
-     * @ORM\Column(name="endDate", type="integer")
+     * @ORM\Column(name="week", type="integer")
      */
     private $week;
 
