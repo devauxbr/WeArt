@@ -31,6 +31,9 @@ class AdminController extends Controller {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($article);
                 $em->flush();
+                // On définit un message flash
+                $this->get('session')->getFlashBag()->add('info', 'Article bien ajouté');
+
 
                 return $this->redirect($this->generateUrl('wa_admin_homepage'));
             }
@@ -52,6 +55,9 @@ class AdminController extends Controller {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($theme);
                 $em->flush();
+                // On définit un message flash
+                $this->get('session')->getFlashBag()->add('info', 'Thème bien ajouté');
+
 
                 return $this->redirect($this->generateUrl('wa_admin_homepage'));
             }

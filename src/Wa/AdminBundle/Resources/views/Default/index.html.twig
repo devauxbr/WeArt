@@ -5,6 +5,11 @@
 {% endblock %}
 
 {% block content %}
+    {% for flashMessage in app.session.flashbag.get('info') %}
+        <p>
+            {{ flashMessage }}
+        </p>
+    {% endfor %}
     <h1>Espace d'admninistration</h1>
     <p>
         <a href="{{ path('wa_add_article') }}">Ajouter un article</a>
