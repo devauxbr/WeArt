@@ -41,8 +41,11 @@ class HomeController extends Controller {
         // TODO : quelles limites de selection pour chaque collection d'entité à retourner ?
         $em = $this->getDoctrine()->getManager();
         
+        // current week number :
+        $date = new \DateTime();  // today
+        $week = (int) $date->format("W");
         // select week's theme
-        $themeSemaine = $em->getRepository('WaFrontBundle:Theme')->findOneByStartDate();
+        $themeSemaine = $em->getRepository('WaFrontBundle:Theme')->findOneByWeek($week);
         
         $ideaRepo = $em->getRepository('WaFrontBundle:Idea');
         // select today and week top ideas :
@@ -54,6 +57,20 @@ class HomeController extends Controller {
                     'themeSemaine' => $themeSemaine,
                     'todayTopIdeas' => $todayTopIdeas,
                     'weekTopIdeas' => $weekTopIdeas,
+                    ));
+    }
+    
+    public function searchAction() {
+        $em = $this->getDoctrine()->getManager();
+        
+        // select week's theme
+        $disciplines = $em->getRepository('WaFrontBundle:Discipline')->findAll();
+        
+        // TODO
+        
+        return $this->render('WaFrontBundle:Home:search.html.twig',
+                array(
+                    'disciplines' => $disciplines,
                     ));
     }
 
