@@ -14,18 +14,24 @@ class IdeaRepository extends EntityRepository {
 
     public function getTodayTopIdea() {
         //http://stackoverflow.com/questions/12893006/symfony2-doctrine-order-entites-by-foreign-attribute
-        //$query = $this->_em->createQuery('SELECT i FROM WaFrontBundle:Idea i JOIN i.votes v WHERE v.date = date(today)');
+        $qb = $this->createQueryBuilder('i')
+                ->select('i, count(v.id) AS HIDDEN nbVotes')
+                ->join('i.votes', 'v')
+                ->add('where', 'v.date = CURRENT_DATE()')
+                ->addOrderby('nbVotes', 'DESC')
+                ->add('groupBy', 'v.id');
+        
+        // select idea_id, count(vote.id) as nbvote from vote inner join idea on idea.id = idea_id where DATE(date) = CURRENT_DATE() group by idea_id order by nbvote asc;
+        
         //$resultats = $query->getResult();
-
         //return $resultats;
-        return null;
+        return $qb->getQuery()->getResult();
     }
-    
+
     public function getWeekTopIdea() {
         //http://stackoverflow.com/questions/12893006/symfony2-doctrine-order-entites-by-foreign-attribute
         //$query = $this->_em->createQuery('SELECT i FROM WaFrontBundle:Idea i JOIN i.votes v WHERE v.date = date(today)');
         //$resultats = $query->getResult();
-
         //return $resultats;
         return null;
     }
