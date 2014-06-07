@@ -27,28 +27,6 @@
 
 {% block content %}
     <!-- TODO : RETIRER CETTE PARTIE !!!! -->
-    <h1>Articles</h1>
-    {% for article in articles %}
-        <h2>
-            {{ article.title }}
-        </h2>
-        <p>
-            {{ article.content }}
-        </p>
-    {% endfor %}
-    
-    <h1>Themes</h1>
-    {% for theme in themes %}
-        <h2>
-            {{ theme.title }}
-        </h2>
-        <h2>
-            Week : {{ theme.week }}
-        </h2>
-        <p>
-            {{ theme.description }}
-        </p>
-    {% endfor %}
     
     <h1>Top Ideas</h1>
     {% for idea in topIdeas %}
