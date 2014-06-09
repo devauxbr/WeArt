@@ -6,7 +6,7 @@ wa_admin:
     
 wa_member:
     resource: "@WaMemberBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /member
 
 wa_front:
     resource: "@WaFrontBundle/Resources/config/routing.yml"

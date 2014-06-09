@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class IdeaType extends AbstractType
+class IdeaSearchType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -17,11 +17,8 @@ class IdeaType extends AbstractType
         $builder
             ->add('title', 'text')
             ->add('description', 'textarea')
-            //->add('discipline','text') TODO
-            //->add('tags','text') TODO
             ->add('theme', 'text')
             ->add('account','text')
-            //->add('uploads','file')
         ;
     }
     
@@ -40,6 +37,6 @@ class IdeaType extends AbstractType
      */
     public function getName()
     {
-        return 'wa_frontbundle_idea';
+        return 'wa_frontbundle_search_idea';
     }
 }
