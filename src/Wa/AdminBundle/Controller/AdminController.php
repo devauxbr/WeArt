@@ -102,7 +102,7 @@ class AdminController extends Controller {
 		// Create DB
 		$this->execCommand(array('command' => 'doctrine:database:create'));
 		
-		return $this->render('WaAdminBundle:Default:flushSite.html.twig');
+		return $this->render('WaAdminBundle:Default:clearSite.html.twig');
 	}
 	
 	public function fillSiteAction() {
@@ -117,7 +117,7 @@ class AdminController extends Controller {
 			$em->getConfiguration()
 		);*/
 
-		// Article
+		// --------------> Article
 		$article = new Article();
 		$article->setTitle("Une news");
 		$article->setContent("Proin nonummy, sit amet eros. Nullam ornare. Praesent odio ligula, dapibus sed, tincidunt eget, dictum ac, nibh. Nam quis lacus. Nunc eleifend molestie velit. Morbi lobortis quam eu velit. Donec euismod vestibulum massa. Donec non lectus. Aliquam commodo lacus sit amet nulla. Cras dignissim elit et augue. Nullam non diam.");
@@ -142,9 +142,40 @@ class AdminController extends Controller {
 		$article->setPublished(true);
 		$em->persist($article);
 		
+		// --------------> Users
+		$userManager = $this->get('fos_user.user_manager');
+		$user = $userManager->createUser();
+		
+		$user->setUsername('colin');
+		$user->setEmail('congelli501@gmail.com');
+		$user->setEnabled(true);
+		$user->setPlainPassword('colin');
+		
+		$em->persist($user);
+		
+		$user = $userManager->createUser();
+		
+		$user->setUsername('pauline');
+		$user->setEmail('p.beurier@gmail.com');
+		$user->setEnabled(true);
+		$user->setPlainPassword('pauline');
+		
+		$em->persist($user);
+		
+		$user = $userManager->createUser();
+		
+		$user->setUsername('bruno');
+		$user->setEmail('devaux.br@gmail.com');
+		$user->setEnabled(true);
+		$user->setPlainPassword('bruno');
+		
+		$em->persist($user);
+		
+		// --------------> Themes
+		
 		
 		$em->flush();
 		
-		return $this->render('WaAdminBundle:Default:flushSite.html.twig');
+		return $this->render('WaAdminBundle:Default:fillSite.html.twig');
 	}
 }
