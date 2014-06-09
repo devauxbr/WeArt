@@ -17,3 +17,6 @@ fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
 
+wa_add_idea:
+    pattern: /add_idea
+    defaults: { _controller: WaMemberBundle:Member:addIdea }

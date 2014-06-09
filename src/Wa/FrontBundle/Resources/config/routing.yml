@@ -10,9 +10,6 @@ wa_front_search:
     pattern:  /search
     defaults: { _controller: WaFrontBundle:Home:search }
     
-wa_add_idea:
-    pattern: /add_idea
-    defaults: { _controller: WaFrontBundle:Home:addIdea }
 
 
 

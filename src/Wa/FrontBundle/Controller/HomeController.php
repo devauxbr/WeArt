@@ -62,6 +62,24 @@ class HomeController extends Controller {
     }
     
     public function searchAction() {
+        $request = $this->get('request');
+        // Si requête POST, c'est que l'utilisateur a saisie une recherche :
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($idea);
+                $em->flush();
+
+                /* TODO quel objet renvoyer ? */
+                return $this->redirect($this->generateUrl('wa_front_homepage'));
+            }
+        }
+        
+        // Sinon c'est qu'on affiche la page pour la première fois :
+        $idea = new Idea();
+        $form = $this->createForm(new IdeaType, $idea);
         $em = $this->getDoctrine()->getManager();
         
         // select week's theme
