@@ -174,7 +174,7 @@ class AdminController extends Controller {
 		
 		$em->persist($user);
 		
-		// --------------> Themes
+		// --------------> Discipline
 		
 		$discpline = new Discipline();
 		$discpline->setTitle('Dessin');
@@ -217,6 +217,18 @@ class AdminController extends Controller {
 		$discpline->setDescription('Réalisez vos courts métrages');
 		$discpline->setLogoName('video.png');
 		$em->persist($discpline);
+		
+		// --------------> Themes
+		
+		for($i = 0; $i < 5; $i++)
+		{
+			$theme = new Theme();
+			$theme->setTitle('Le rève n°' . $i);
+			$theme->setDescription('Montrer vos rèves (édition ' . $i . ')');
+			$theme->setYear(2014);
+			$theme->setWeek(22 + $i);
+			$em->persist($theme);
+		}
 		
 		$em->flush();
 		

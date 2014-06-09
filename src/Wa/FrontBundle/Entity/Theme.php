@@ -56,7 +56,7 @@ class Theme
      * @ORM\OneToMany(targetEntity="Wa\FrontBundle\Entity\Idea", mappedBy="theme")
      */
     private $ideas;
-    
+
     /**
      * Get id
      *
