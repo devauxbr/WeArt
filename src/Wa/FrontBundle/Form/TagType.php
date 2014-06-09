@@ -1,14 +1,12 @@
 <?php
 
-namespace Wa\MemberBundle\Form;
+namespace Wa\FrontBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use \Wa\FrontBundle\Form\TagType;
-
-class IdeaType extends AbstractType
+class TagType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -18,15 +16,6 @@ class IdeaType extends AbstractType
     {
         $builder
             ->add('title', 'text')
-            ->add('description', 'textarea')
-            ->add('discipline','entity', array(
-                'class' => 'WaFrontBundle:Discipline',
-                'property' => 'title'
-            ))
-            ->add('tags', 'collection', array('type'         => new TagType(),
-                                              'allow_add'    => true,
-                                              'allow_delete' => true)) 
-            //->add('uploads','file')
         ;
     }
     
@@ -36,7 +25,7 @@ class IdeaType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Wa\FrontBundle\Entity\Idea'
+            'data_class' => 'Wa\FrontBundle\Entity\Tag'
         ));
     }
 
@@ -45,6 +34,6 @@ class IdeaType extends AbstractType
      */
     public function getName()
     {
-        return 'wa_frontbundle_idea';
+        return 'wa_frontbundle_tagtype';
     }
 }
