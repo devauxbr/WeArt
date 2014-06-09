@@ -79,10 +79,8 @@ class AdminController extends Controller {
 		
 		if($result !== 0)
 		{
-			exit('Comman ' . $options['command'] . ' failed !');
+			//exit('Comman ' . $options['command'] . ' failed !');
 		}
-		
-		$this->resetEm();
 	}
 	
 	private function resetEm() {
@@ -96,33 +94,28 @@ class AdminController extends Controller {
 		return $em;
 	}
 	
-	private function flushSite() {
-		$kernel = $this->get('kernel');
-		$application = new \Symfony\Bundle\FrameworkBundle\Console\Application($kernel);
-		$application->setAutoExit(false);
-		
+	public function clearSiteAction()
+	{
 		// Drop DB
-		/*$this->execCommand(array('command' => 'doctrine:database:drop',"--force" => true));
+		$this->execCommand(array('command' => 'doctrine:database:drop',"--force" => true));
 		
 		// Create DB
 		$this->execCommand(array('command' => 'doctrine:database:create'));
 		
-		// Update schema
-		$this->execCommand(array('command' => 'doctrine:schema:create'));*/
-		
+		return $this->render('WaAdminBundle:Default:flushSite.html.twig');
 	}
 	
-	public function resetSiteAction() {
-		// Flush all
-		$this->flushSite();
+	public function fillSiteAction() {
+		// Update schema
+		$this->execCommand(array('command' => 'doctrine:schema:create'));
 		
 		// Reset entity manager
 		$em = $this->getDoctrine()->getManager();
-		$em->close();
+		/*$em->close();
 		$em = $em->create(
 			$em->getConnection(),
 			$em->getConfiguration()
-		);
+		);*/
 
 		// Article
 		$article = new Article();

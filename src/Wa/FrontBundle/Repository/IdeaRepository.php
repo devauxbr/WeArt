@@ -17,9 +17,9 @@ class IdeaRepository extends EntityRepository {
         $qb = $this->createQueryBuilder('i')
                 ->select('i, count(v.id) AS HIDDEN nbVotes')
                 ->join('i.votes', 'v')
-                ->add('where', 'v.date = CURRENT_DATE()')
-                ->addOrderby('nbVotes', 'DESC')
-                ->add('groupBy', 'v.id');
+                ->where('v.date = CURRENT_DATE()')
+                ->orderby('nbVotes', 'DESC')
+                ->groupBy('v.id');
         
         // select idea_id, count(vote.id) as nbvote from vote inner join idea on idea.id = idea_id where DATE(date) = CURRENT_DATE() group by idea_id order by nbvote asc;
         

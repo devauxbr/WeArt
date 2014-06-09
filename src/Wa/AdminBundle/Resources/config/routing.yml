@@ -10,7 +10,10 @@ wa_add_theme:
     pattern: /add_theme
     defaults: { _controller: WaAdminBundle:Admin:addTheme }
     
-wa_reset_site:
-    pattern: /reset_site
-    defaults: { _controller: WaAdminBundle:Admin:resetSite }
+wa_clear_site:
+    pattern: /clear_site
+    defaults: { _controller: WaAdminBundle:Admin:clearSite }
     
+wa_fill_site:
+    pattern: /fill_site
+    defaults: { _controller: WaAdminBundle:Admin:fillSite }
