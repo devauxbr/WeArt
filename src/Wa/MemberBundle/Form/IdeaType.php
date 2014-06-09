@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use \Wa\FrontBundle\Form\TagType;
+use \Wa\MemberBundle\Form\UploadType;
 
 class IdeaType extends AbstractType
 {
@@ -25,8 +26,10 @@ class IdeaType extends AbstractType
             ))
             ->add('tags', 'collection', array('type'         => new TagType(),
                                               'allow_add'    => true,
+                                              'allow_delete' => true))
+            ->add('uploads', 'collection', array('type'         => new UploadType(),
+                                              'allow_add'    => true,
                                               'allow_delete' => true)) 
-            //->add('uploads','file')
         ;
     }
     

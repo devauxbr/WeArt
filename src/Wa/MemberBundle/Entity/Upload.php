@@ -36,6 +36,8 @@ class Upload
      */
     private $path;
     
+    private $file;
+    
     /**
      *
      * @var type Idea
