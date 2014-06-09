@@ -8,8 +8,11 @@ use Symfony\Component\Console\Input\ArrayInput;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use \Wa\FrontBundle\Entity\Theme;
-use \Wa\FrontBundle\Entity\Article;
+
+use Wa\FrontBundle\Entity\Theme;
+use Wa\FrontBundle\Entity\Article;
+use Wa\FrontBundle\Entity\Discipline;
+
 use Wa\AdminBundle\Form\ThemeType;
 use Wa\AdminBundle\Form\ArticleType;
 
@@ -173,6 +176,47 @@ class AdminController extends Controller {
 		
 		// --------------> Themes
 		
+		$discpline = new Discipline();
+		$discpline->setTitle('Dessin');
+		$discpline->setDescription('Un peu de dessin');
+		$discpline->setLogoName('dessin.png');
+		$em->persist($discpline);
+		
+		$discpline = new Discipline();
+		$discpline->setTitle('Infographisme');
+		$discpline->setDescription('Du dessin, mais sur un ordinateur');
+		$discpline->setLogoName('infographisme.png');
+		$em->persist($discpline);
+		
+		$discpline = new Discipline();
+		$discpline->setTitle('Litterature');
+		$discpline->setDescription('Nouvelles, romans...');
+		$discpline->setLogoName('litterature.png');
+		$em->persist($discpline);
+		
+		$discpline = new Discipline();
+		$discpline->setTitle('Peinture');
+		$discpline->setDescription('À l\'eau, à l\'huile, il y en a pour tous les goûts !');
+		$discpline->setLogoName('peinture.png');
+		$em->persist($discpline);
+		
+		$discpline = new Discipline();
+		$discpline->setTitle('Photo');
+		$discpline->setDescription('Prenez les plus beau clichés');
+		$discpline->setLogoName('photo.png');
+		$em->persist($discpline);
+		
+		$discpline = new Discipline();
+		$discpline->setTitle('Sculture');
+		$discpline->setDescription('L\'art en 3D !');
+		$discpline->setLogoName('sculpture.png');
+		$em->persist($discpline);
+		
+		$discpline = new Discipline();
+		$discpline->setTitle('Video');
+		$discpline->setDescription('Réalisez vos courts métrages');
+		$discpline->setLogoName('video.png');
+		$em->persist($discpline);
 		
 		$em->flush();
 		

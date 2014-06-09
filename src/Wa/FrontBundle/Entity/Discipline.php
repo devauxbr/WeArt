@@ -34,6 +34,13 @@ class Discipline
      * @ORM\Column(name="description", type="text")
      */
     private $description;
+	
+	/**
+	 * @var string
+	 * 
+	 * @ORM\Column(name="logoName", type="string", length=60)
+	 */
+	private $logoName;
 
     /**
      *
@@ -149,5 +156,28 @@ class Discipline
     public function getIdeas()
     {
         return $this->ideas;
+    }
+
+    /**
+     * Set logoName
+     *
+     * @param string $logoName
+     * @return Discipline
+     */
+    public function setLogoName($logoName)
+    {
+        $this->logoName = $logoName;
+
+        return $this;
+    }
+
+    /**
+     * Get logoName
+     *
+     * @return string 
+     */
+    public function getLogoName()
+    {
+        return $this->logoName;
     }
 }
