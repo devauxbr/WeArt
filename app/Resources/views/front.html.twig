@@ -21,8 +21,8 @@
 				<div class="links col-xs-5">
 					<ul>
 						<li><a href="{{ path('wa_front_homepage') }}">Home</a></li>
-						<li><a href="#">Consultation</a></li>
-						<li><a href="#">Une idée ?</a></li>
+						<li><a href="{{ path('wa_front_consultation') }}">Consultation</a></li>
+						<li><a href="{{ path('wa_add_idea') }}">Une idée ?</a></li>
 						<li class="visible-xs">
 							{{ block('userMenu') }}
 						</li>
@@ -38,6 +38,7 @@
 				</div>
 				<div class="hidden-xs links right col-md-5">
 					<ul>
+						<li><a href="{{ path('wa_front_search') }}">Recherche</a></li>
 						<li>{{ block('userMenu') }}</li>
 					</ul>
 				</div>
