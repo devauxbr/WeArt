@@ -33,7 +33,7 @@ class Tag
      *
      * @var type Ideas
      * 
-     * @ORM\ManyToMany(targetEntity="Wa\FrontBundle\Entity\Idea", inversedBy="tags")
+     * @ORM\ManyToMany(targetEntity="Wa\FrontBundle\Entity\Idea", mappedBy="tags")
      */
     private $ideas;
 

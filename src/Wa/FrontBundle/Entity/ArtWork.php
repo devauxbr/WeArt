@@ -34,6 +34,7 @@ class ArtWork
      * @var type Idea
      * 
      * @ORM\OneToOne(targetEntity="Wa\FrontBundle\Entity\Idea", mappedBy="artWork")
+     * @ORM\JoinColumn(name="idea_id",referencedColumnName="id", nullable=true)
      */
     private $idea;
     
@@ -42,7 +43,6 @@ class ArtWork
      * @var type Account
      * 
      * @ORM\OneToOne(targetEntity="Wa\MemberBundle\Entity\Account", inversedBy="artWork")
-     * @ORM\JoinColumn(name="account_id",referencedColumnName="id", nullable=true)
      */
     private $account;
 

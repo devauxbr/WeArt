@@ -274,12 +274,14 @@ class Idea
     /**
      * Add uploads
      *
-     * @param \Wa\MemberBundle\Entity\Upload $uploads
+     * @param \Wa\MemberBundle\Entity\Upload $upload
      * @return Idea
      */
-    public function addUpload(\Wa\MemberBundle\Entity\Upload $uploads)
+    public function addUpload(\Wa\MemberBundle\Entity\Upload $upload)
     {
-        $this->uploads[] = $uploads;
+        $this->uploads[] = $upload;
+        
+        $upload->setIdea($this);
 
         return $this;
     }

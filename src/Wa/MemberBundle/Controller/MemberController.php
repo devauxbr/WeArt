@@ -18,6 +18,13 @@ class MemberController extends Controller {
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $idea->setAccount($this->getUser());
+                
+                
+                foreach($idea->getUploads() as $upload)
+                {
+                    $idea->addUpload($upload);
+                }
+                
                 $em->persist($idea);
                 $em->flush();
 
