@@ -7,7 +7,7 @@ use Wa\FrontBundle\Entity\Article;
 use Wa\FrontBundle\Entity\Discipline;
 use Wa\FrontBundle\Entity\Idea;
 use Wa\MemberBundle\Entity\Account;
-use Wa\FrontBundle\Form\IdeaType;
+use Wa\FrontBundle\Form\IdeaSearchType;
 
 class HomeController extends Controller {
 
@@ -79,17 +79,14 @@ class HomeController extends Controller {
         
         // Sinon c'est qu'on affiche la page pour la première fois :
         $idea = new Idea();
-        $form = $this->createForm(new IdeaType, $idea);
+        $form = $this->createForm(new IdeaSearchType, $idea);
         $em = $this->getDoctrine()->getManager();
-        
-        // select week's theme
-        $disciplines = $em->getRepository('WaFrontBundle:Discipline')->findAll();
         
         // TODO
         
         return $this->render('WaFrontBundle:Home:search.html.twig',
                 array(
-                    'disciplines' => $disciplines,
+                    'form' => $form->createView(),
                     ));
     }
 

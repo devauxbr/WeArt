@@ -28,4 +28,22 @@
 {% block content %}
     <h1>TODO</h1>
     <p><a href="https://trello.com/c/jnNd6lpG">Liens vers la tâche Trello</a></p>
+    
+    <h1>Theme semaine</h1>
+        <h2>
+            {{ themeSemaine.title }}
+        </h2>
+        <p>
+            {{ themeSemaine.description }}
+        </p>
+    
+    <h1>Top Ideas</h1>
+    {% for idea in todayTopIdeas %}
+        <h2>
+            {{ idea.title }}
+        </h2>
+        <p>
+            {{ idea.description }}
+        </p>
+    {% endfor %}
 {% endblock %}

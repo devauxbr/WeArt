@@ -57,7 +57,7 @@ class Idea
      *
      * @var type tags
      * 
-     * @ORM\ManyToMany(targetEntity="Wa\FrontBundle\Entity\Tag", inversedBy="ideas")
+     * @ORM\ManyToMany(targetEntity="Wa\FrontBundle\Entity\Tag", cascade={"persist", "remove"}, inversedBy="ideas")
      */
     private $tags;
     
@@ -73,7 +73,7 @@ class Idea
      *
      * @var type uploads
      * 
-     * @ORM\OneToMany(targetEntity="Wa\MemberBundle\Entity\Upload", mappedBy="idea")
+     * @ORM\OneToMany(targetEntity="Wa\MemberBundle\Entity\Upload", cascade={"persist", "remove"}, mappedBy="idea")
      */
     private $uploads;
     
@@ -212,6 +212,7 @@ class Idea
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->uploads = new \Doctrine\Common\Collections\ArrayCollection();
         $this->votes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->voteNumber = 0;
     }
 
     /**
