@@ -57,7 +57,7 @@ class Idea
      *
      * @var type tags
      * 
-     * @ORM\ManyToMany(targetEntity="Wa\FrontBundle\Entity\Tag", cascade={"persist", "remove"}, inversedBy="ideas")
+     * @ORM\ManyToMany(targetEntity="Wa\FrontBundle\Entity\Tag", cascade={"persist"}, inversedBy="ideas")
      */
     private $tags;
     

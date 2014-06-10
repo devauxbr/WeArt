@@ -17,6 +17,7 @@ class MemberController extends Controller {
 
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
+                $idea->setAccount($this->getUser());
                 $em->persist($idea);
                 $em->flush();
 
