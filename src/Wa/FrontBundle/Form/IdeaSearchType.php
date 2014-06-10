@@ -24,14 +24,7 @@ class IdeaSearchType extends AbstractType {
 				'query_builder' => function(ThemeRepository $er) {
 					return $er->createQueryBuilder('t')
 							->orderBy('t.week', 'ASC');
-				}))
-			->add('emails', 'collection', array(
-				// chaque item du tableau sera un champ « email »
-				'type' => 'email',
-				// ces options sont passées à chaque type « email »
-				'options' => array(
-					'required' => false,
-					'attr' => array('class' => 'email-box'))));
+				}));
     }
 
     /**

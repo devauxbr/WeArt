@@ -13,27 +13,29 @@ use Doctrine\ORM\EntityRepository;
 class IdeaRepository extends EntityRepository {
 
     public function getTodayTopIdea() {
-        //http://stackoverflow.com/questions/12893006/symfony2-doctrine-order-entites-by-foreign-attribute
+        $date = new \Datetime();
+
         $qb = $this->createQueryBuilder('i')
                 ->select('i, count(v.id) AS HIDDEN nbVotes')
                 ->join('i.votes', 'v')
-                ->where('v.date = CURRENT_DATE()')
+                ->where('v.date >= :date')->setParameter('date', $date->sub(\DateInterval::createFromDateString('1 days')))
                 ->orderby('nbVotes', 'DESC')
-                ->groupBy('v.id');
-        
-        // select idea_id, count(vote.id) as nbvote from vote inner join idea on idea.id = idea_id where DATE(date) = CURRENT_DATE() group by idea_id order by nbvote asc;
-        
-        //$resultats = $query->getResult();
-        //return $resultats;
+                ->groupBy('v.idea');
+
         return $qb->getQuery()->getResult();
     }
 
     public function getWeekTopIdea() {
-        //http://stackoverflow.com/questions/12893006/symfony2-doctrine-order-entites-by-foreign-attribute
-        //$query = $this->_em->createQuery('SELECT i FROM WaFrontBundle:Idea i JOIN i.votes v WHERE v.date = date(today)');
-        //$resultats = $query->getResult();
-        //return $resultats;
-        return null;
+        $date = new \Datetime();
+
+        $qb = $this->createQueryBuilder('i')
+                ->select('i, count(v.id) AS HIDDEN nbVotes')
+                ->join('i.votes', 'v')
+                ->where('v.date >= :date')->setParameter('date', $date->sub(\DateInterval::createFromDateString('1 weeks')))
+                ->orderby('nbVotes', 'DESC')
+                ->groupBy('v.idea');
+        
+        return $qb->getQuery()->getResult();
     }
 
 }
