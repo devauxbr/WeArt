@@ -123,7 +123,7 @@ class Upload {
     public function getFile() {
         return $this->file;
     }
-
+    
     public function setFile(UploadedFile $file) {
         $this->file = $file;
 
@@ -173,6 +173,8 @@ class Upload {
                 unlink($oldFile);
             }
         }
+        $this->file->move($this->getUploadRootDir(), $this->id . '.' . $this->path);
+        unset($this->file);
     }
 
     /**
@@ -196,7 +198,7 @@ class Upload {
 
     public function getUploadDir() {
         // On retourne le chemin relatif vers l'image pour un navigateur
-        return 'uploads/img';
+        return 'uploads/images';
     }
 
     protected function getUploadRootDir() {

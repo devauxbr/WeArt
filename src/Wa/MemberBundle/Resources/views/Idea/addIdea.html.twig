@@ -17,7 +17,7 @@
             var $container = $('div#wa_frontbundle_idea_tags');
 
             // On ajoute un lien pour ajouter une nouvelle catégorie
-            var $lienAjout = $('<a href="#" id="ajout_tags" class="btn">Ajouter un Tags</a>');
+            var $lienAjout = $('<a href="#" id="ajout_tags" class="btn">Ajouter un Tag</a>');
             $container.append($lienAjout);
 
             // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
@@ -76,69 +76,70 @@
         });
         
         /* Deuxième fonction upload */
-        
         $(document).ready(function() {
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
-            var $container2 = $('div#wa_frontbundle_idea_uploads');
+            var $container = $('div#wa_frontbundle_idea_uploads');
 
             // On ajoute un lien pour ajouter une nouvelle catégorie
-            var $lienAjout2 = $('<a href="#" id="ajout_tags" class="btn">Ajouter un Fichier</a>');
-            $container2.append($lienAjout2);
+            var $lienAjout = $('<a href="#" id="ajout_tags" class="btn">Ajouter un Fichier</a>');
+            $container.append($lienAjout);
 
             // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
-            $lienAjout2.click(function(e) {
-                ajouterFile($container2);
+            $lienAjout.click(function(e) {
+                ajouterTag($container);
                 e.preventDefault(); // évite qu'un # apparaisse dans l'URL
                 return false;
             });
 
             // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
-            var index2 = $container2.find(':input').length;
+            var index = $container.find(':input').length;
 
             // On ajoute un premier champ directement s'il n'en existe pas déjà un (cas d'un nouvel article par exemple).
-            if (index2 == 0) {
-                ajouterFile($container2);
+            if (index == 0) {
+                ajouterTag($container);
             } else {
                 // Pour chaque catégorie déjà existante, on ajoute un lien de suppression
-                $container2.children('div').each(function() {
-                    ajouterLienSuppressionFile($(this));
+                $container.children('div').each(function() {
+                    ajouterLienSuppression($(this));
                 });
             }
 
             // La fonction qui ajoute un formulaire Categorie
-            function ajouterFile($container2) {
+            function ajouterTag($container) {
                 // Dans le contenu de l'attribut « data-prototype », on remplace :
                 // - le texte "__name__label__" qu'il contient par le label du champ
                 // - le texte "__name__" qu'il contient par le numéro du champ
-                var $prototype = $($container2.attr('data-prototype').replace(/__name__label__/g, 'Fichier n°' + (index + 1))
-                        .replace(/__name__/g, index2));
+                var $prototype = $($container.attr('data-prototype').replace(/__name__label__/g, 'Fichier n°' + (index + 1))
+                        .replace(/__name__/g, index));
 
                 // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
-                ajouterLienSuppressionFile($prototype);
+                ajouterLienSuppression($prototype);
 
                 // On ajoute le prototype modifié à la fin de la balise <div>
-                $container2.append($prototype);
+                $container.append($prototype);
 
                 // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
-                index2++;
+                index++;
             }
 
             // La fonction qui ajoute un lien de suppression d'une catégorie
-            function ajouterLienSuppressionFile($prototype2) {
+            function ajouterLienSuppression($prototype) {
                 // Création du lien
                 $lienSuppression = $('<a href="#" class="btn btn-danger">Supprimer</a>');
 
                 // Ajout du lien
-                $prototype2.append($lienSuppression);
+                $prototype.append($lienSuppression);
 
                 // Ajout du listener sur le clic du lien
                 $lienSuppression.click(function(e) {
-                    $prototype2.remove();
+                    $prototype.remove();
                     e.preventDefault(); // évite qu'un # apparaisse dans l'URL
                     return false;
                 });
             }
         });
+        
+        
         
     </script>
 

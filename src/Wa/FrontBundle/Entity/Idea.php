@@ -57,7 +57,7 @@ class Idea
      *
      * @var type tags
      * 
-     * @ORM\ManyToMany(targetEntity="Wa\FrontBundle\Entity\Tag", cascade={"persist", "remove"}, inversedBy="ideas")
+     * @ORM\ManyToMany(targetEntity="Wa\FrontBundle\Entity\Tag", cascade={"persist"}, inversedBy="ideas")
      */
     private $tags;
     
@@ -274,12 +274,14 @@ class Idea
     /**
      * Add uploads
      *
-     * @param \Wa\MemberBundle\Entity\Upload $uploads
+     * @param \Wa\MemberBundle\Entity\Upload $upload
      * @return Idea
      */
-    public function addUpload(\Wa\MemberBundle\Entity\Upload $uploads)
+    public function addUpload(\Wa\MemberBundle\Entity\Upload $upload)
     {
-        $this->uploads[] = $uploads;
+        $this->uploads[] = $upload;
+        
+        $upload->setIdea($this);
 
         return $this;
     }
