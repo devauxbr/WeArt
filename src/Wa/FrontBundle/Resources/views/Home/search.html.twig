@@ -28,4 +28,13 @@
 {% block content %}
     <h1>TODO</h1>
     <p><a href="https://trello.com/c/sXklkuHw">Liens vers la tâche Trello</a></p>
+    
+    <h3>Formulaire d'idée</h3>
+
+    <div class="well">
+      <form method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input type="submit" class="btn btn-primary" />
+      </form>
+    </div>
 {% endblock %}

@@ -2,6 +2,7 @@
 
 namespace Wa\MemberBundle\Entity;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Mapping as ORM;
 use \Wa\FrontBundle\Entity\Idea;
 
@@ -10,9 +11,10 @@ use \Wa\FrontBundle\Entity\Idea;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Wa\MemberBundle\Repository\UploadRepository")
+ * @ORM\HasLifecycleCallbacks
  */
-class Upload
-{
+class Upload {
+
     /**
      * @var integer
      *
@@ -35,9 +37,9 @@ class Upload
      * @ORM\Column(name="path", type="string", length=255)
      */
     private $path;
-    
     private $file;
-    
+    private $tempFilePath;
+
     /**
      *
      * @var type Idea
@@ -46,14 +48,12 @@ class Upload
      */
     private $idea;
 
-
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -63,8 +63,7 @@ class Upload
      * @param string $name
      * @return Upload
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -75,8 +74,7 @@ class Upload
      *
      * @return string 
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -86,8 +84,7 @@ class Upload
      * @param string $path
      * @return Upload
      */
-    public function setPath($path)
-    {
+    public function setPath($path) {
         $this->path = $path;
 
         return $this;
@@ -98,8 +95,7 @@ class Upload
      *
      * @return string 
      */
-    public function getPath()
-    {
+    public function getPath() {
         return $this->path;
     }
 
@@ -109,8 +105,7 @@ class Upload
      * @param \Wa\FrontBundle\Entity\Idea $idea
      * @return Upload
      */
-    public function setIdea(\Wa\FrontBundle\Entity\Idea $idea = null)
-    {
+    public function setIdea(\Wa\FrontBundle\Entity\Idea $idea = null) {
         $this->idea = $idea;
 
         return $this;
@@ -121,8 +116,92 @@ class Upload
      *
      * @return \Wa\FrontBundle\Entity\Idea 
      */
-    public function getIdea()
-    {
+    public function getIdea() {
         return $this->idea;
     }
+    
+    public function getFile() {
+        return $this->file;
+    }
+
+    public function setFile(UploadedFile $file) {
+        $this->file = $file;
+
+        // On vérifie si on avait déjà un fichier pour cette entité
+        if (null !== $this->path) {
+            // On sauvegarde l'extension du fichier pour le supprimer plus tard
+            $this->tempFilePath = $this->path;
+
+            // On réinitialise les valeurs des attributs url et alt
+            $this->path = null;
+            $this->name = null;
+        }
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload() {
+        // Si jamais il n'y a pas de fichier (champ facultatif)
+        if (null === $this->file) {
+            return;
+        }
+
+        // Le nom du fichier est son id, on doit juste stocker également son extension
+        // Pour faire propre, on devrait renommer cet attribut en « extension », plutôt que « url »
+        $this->path = $this->file->guessExtension();
+
+        // Et on génère l'attribut alt de la balise <img>, à la valeur du nom du fichier sur le PC de l'internaute
+        $this->name = $this->file->getClientOriginalName();
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload() {
+        // Si jamais il n'y a pas de fichier (champ facultatif)
+        if (null === $this->file) {
+            return;
+        }
+
+        // Si on avait un ancien fichier, on le supprime
+        if (null !== $this->tempFilePath) {
+            $oldFile = $this->getUploadRootDir() . '/' . $this->id . '.' . $this->tempFilePath;
+            if (file_exists($oldFile)) {
+                unlink($oldFile);
+            }
+        }
+    }
+
+    /**
+     * @ORM\PreRemove()
+     */
+    public function preRemoveUpload() {
+        // On sauvegarde temporairement le nom du fichier, car il dépend de l'id
+        $this->tempFilePath = $this->getUploadRootDir() . '/' . $this->id . '.' . $this->path;
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload() {
+        // En PostRemove, on n'a pas accès à l'id, on utilise notre nom sauvegardé
+        if (file_exists($this->tempFilePath)) {
+            // On supprime le fichier
+            unlink($this->tempFilePath);
+        }
+    }
+
+    public function getUploadDir() {
+        // On retourne le chemin relatif vers l'image pour un navigateur
+        return 'uploads/img';
+    }
+
+    protected function getUploadRootDir() {
+        // On retourne le chemin relatif vers l'image pour notre code PHP
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
+    }
+
 }
