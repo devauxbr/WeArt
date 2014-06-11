@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Wa\MemberBundle\WaMemberBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Wa\AdminBundle\WaAdminBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

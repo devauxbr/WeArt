@@ -5,10 +5,12 @@ namespace Wa\MemberBundle\Entity;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Mapping as ORM;
 use \Wa\FrontBundle\Entity\Idea;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Upload
  *
+ * @JMS\ExclusionPolicy("all")
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Wa\MemberBundle\Repository\UploadRepository")
  * @ORM\HasLifecycleCallbacks

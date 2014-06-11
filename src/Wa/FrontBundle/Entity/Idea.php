@@ -5,10 +5,12 @@ namespace Wa\FrontBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use \Wa\MemberBundle\Entity\Upload;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Idea
  *
+ * @JMS\ExclusionPolicy("all")
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Wa\FrontBundle\Repository\IdeaRepository")
  */
@@ -20,6 +22,7 @@ class Idea
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Expose
      */
     private $id;
 
@@ -27,6 +30,7 @@ class Idea
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @JMS\Expose
      */
     private $title;
 
@@ -34,6 +38,7 @@ class Idea
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255)
+     * @JMS\Expose
      */
     private $description;
 
@@ -41,6 +46,7 @@ class Idea
      * @var integer
      *
      * @ORM\Column(name="voteNumber", type="integer")
+     * @JMS\Expose
      */
     private $voteNumber;
 
@@ -49,6 +55,7 @@ class Idea
      * @var type Discipline
      * 
      * @ORM\ManyToOne(targetEntity="Wa\FrontBundle\Entity\Discipline", inversedBy="ideas")
+     * @JMS\Expose
      */
     private $discipline;
     
@@ -58,6 +65,7 @@ class Idea
      * @var type tags
      * 
      * @ORM\ManyToMany(targetEntity="Wa\FrontBundle\Entity\Tag", cascade={"persist"}, inversedBy="ideas")
+     * @JMS\Expose
      */
     private $tags;
     
@@ -66,6 +74,7 @@ class Idea
      * @var type theme
      * 
      * @ORM\ManyToOne(targetEntity="Wa\FrontBundle\Entity\Theme", inversedBy="ideas")
+     * @JMS\Expose
      */
     private $theme;
     
@@ -74,6 +83,7 @@ class Idea
      * @var type uploads
      * 
      * @ORM\OneToMany(targetEntity="Wa\MemberBundle\Entity\Upload", cascade={"persist", "remove"}, mappedBy="idea")
+     * @JMS\Expose
      */
     private $uploads;
     
@@ -90,6 +100,7 @@ class Idea
      * @var type account
      * 
      * @ORM\ManyToOne(targetEntity="Wa\MemberBundle\Entity\Account", inversedBy="ideas")
+     * @JMS\Expose
      */
     private $account;
     
@@ -98,6 +109,7 @@ class Idea
      * @var type votes
      * 
      * @ORM\OneToMany(targetEntity="Wa\FrontBundle\Entity\Vote", mappedBy="idea")
+     * @JMS\Expose
      */
     private $votes;
 

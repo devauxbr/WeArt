@@ -4,21 +4,25 @@ namespace Wa\MemberBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Account
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Wa\MemberBundle\Repository\AccountRepository")
+ * @JMS\ExclusionPolicy("all")
  */
 class Account extends BaseUser
 {
+    
     /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Exclude
      */
     protected $id;
 
@@ -26,6 +30,7 @@ class Account extends BaseUser
      * @var integer
      *
      * @ORM\Column(name="point", type="integer")
+     * @JMS\Exclude
      */
     private $point;
     
@@ -34,6 +39,7 @@ class Account extends BaseUser
      * @var type Ideas
      * 
      * @ORM\OneToMany(targetEntity="Wa\FrontBundle\Entity\Idea", mappedBy="account")
+     * @JMS\Exclude
      */
     private $ideas;
     
@@ -41,7 +47,8 @@ class Account extends BaseUser
      *
      * @var type Votes
      * 
-     * @ORM\OneToMany(targetEntity="Wa\FrontBundle\Entity\Vote", mappedBy="accounts")
+     * @ORM\OneToMany(targetEntity="Wa\FrontBundle\Entity\Vote", mappedBy="account")
+     * @JMS\Exclude
      */
     private $votes;
 
@@ -49,7 +56,8 @@ class Account extends BaseUser
      *
      * @var type Article
      * 
-     * @ORM\OneToMany(targetEntity="Wa\FrontBundle\Entity\Article", mappedBy="accounts")
+     * @ORM\OneToMany(targetEntity="Wa\FrontBundle\Entity\Article", mappedBy="account")
+     * @JMS\Exclude
      */
     private $article;
     
@@ -57,8 +65,9 @@ class Account extends BaseUser
      *
      * @var type ArtWork
      * 
-     * @ORM\OneToOne(targetEntity="Wa\FrontBundle\Entity\ArtWork", inversedBy="accounts")
+     * @ORM\OneToOne(targetEntity="Wa\FrontBundle\Entity\ArtWork", inversedBy="account")
      * @ORM\JoinColumn(name="art_work_id",referencedColumnName="id", nullable=true)
+     * @JMS\Exclude
      */
     private $artWork;
     

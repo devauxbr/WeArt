@@ -15,16 +15,19 @@ class IdeaSearchType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-			->add('discipline', 'entity', array(
-				'class' => 'WaFrontBundle:Discipline',
-				'property' => 'title'))
-			->add('theme', 'entity', array(
-				'class' => 'WaFrontBundle:Theme',
-				'property' => 'title',
-				'query_builder' => function(ThemeRepository $er) {
-					return $er->createQueryBuilder('t')
-							->orderBy('t.week', 'ASC');
-				}));
+                ->add('discipline', 'entity', array(
+                    'class' => 'WaFrontBundle:Discipline',
+                    'property' => 'title'))
+                ->add('theme', 'entity', array(
+                    'class' => 'WaFrontBundle:Theme',
+                    'property' => 'title',
+                    'query_builder' => function(ThemeRepository $er) {
+                return $er->createQueryBuilder('t')
+                        ->orderBy('t.week', 'ASC');
+            }))
+                ->add('tags', 'collection', array('type' => new TagType(),
+                    'allow_add' => true,
+                    'allow_delete' => true));
     }
 
     /**

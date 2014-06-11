@@ -3,10 +3,12 @@
 namespace Wa\FrontBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Discipline
  *
+ * @JMS\ExclusionPolicy("all")
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Wa\FrontBundle\Repository\DisciplineRepository")
  */
@@ -18,6 +20,7 @@ class Discipline
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Expose
      */
     private $id;
 

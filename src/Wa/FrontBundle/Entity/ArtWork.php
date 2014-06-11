@@ -4,10 +4,12 @@ namespace Wa\FrontBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use \Wa\MemberBundle\Entity\Account;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * ArtWork
  *
+ * @JMS\ExclusionPolicy("all")
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Wa\FrontBundle\Repository\ArtWorkRepository")
  */

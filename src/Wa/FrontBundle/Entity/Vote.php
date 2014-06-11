@@ -3,10 +3,12 @@
 namespace Wa\FrontBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Vote
  *
+ * @JMS\ExclusionPolicy("all")
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Wa\FrontBundle\Repository\VoteRepository")
  */

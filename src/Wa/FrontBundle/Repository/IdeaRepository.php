@@ -3,6 +3,8 @@
 namespace Wa\FrontBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Wa\FrontBundle\Entity\Tag;
+use Wa\FrontBundle\Entity\Theme;
 
 /**
  * IdeaRepository
@@ -36,6 +38,10 @@ class IdeaRepository extends EntityRepository {
                 ->groupBy('v.idea');
         
         return $qb->getQuery()->getResult();
+    }
+    
+    public function searchIdea($discipline, $theme, $tags) {
+        return $this->findAll();
     }
 
 }
