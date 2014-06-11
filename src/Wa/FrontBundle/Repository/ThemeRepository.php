@@ -27,5 +27,13 @@ class ThemeRepository extends EntityRepository {
 
         return $qb->getQuery()->getResult();
     }
+    
+    public function getCurrentTheme() {
+        // current week number :
+        $date = new \DateTime();  // today
+        $week = (int) $date->format("W");
+        // select week's theme
+        return $this->findOneByWeek($week);
+    }
 
 }

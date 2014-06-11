@@ -17,14 +17,29 @@ class MemberController extends Controller {
 
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
+                //get current theme :
+                $currentTheme = $em->getRepository('WaFrontBundle:Theme')->getCurrentTheme();
+                //Manually set user account, and current theme to the new idea:
                 $idea->setAccount($this->getUser());
+                $idea->setTheme($currentTheme);
                 
-                
+                //Manually set uploads links for this idea (why manually ? don't know but it works...)
                 foreach($idea->getUploads() as $upload)
                 {
                     $idea->addUpload($upload);
                 }
                 
+                //Checking if tags already exists and replacing by existing ones :
+                foreach($idea->getTags() as $tag)
+                {
+                    $existingTag = $em->getRepository('WaFrontBundle:Tag')->findOneByTitle($tag->getTitle());
+                    if ($existingTag) {
+                        $idea->removeTag($tag);
+                        $idea->addTag($existingTag);
+                    }
+                }
+                
+                // persist new idea in BDD :
                 $em->persist($idea);
                 $em->flush();
 

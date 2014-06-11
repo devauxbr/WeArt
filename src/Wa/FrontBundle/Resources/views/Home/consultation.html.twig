@@ -37,8 +37,18 @@
             {{ themeSemaine.description }}
         </p>
     
-    <h1>Top Ideas</h1>
+    <h1>Top Today Ideas</h1>
     {% for idea in todayTopIdeas %}
+        <h2>
+            {{ idea.title }}
+        </h2>
+        <p>
+            {{ idea.description }}
+        </p>
+    {% endfor %}
+    
+    <h1>Top Week Ideas</h1>
+    {% for idea in weekTopIdeas %}
         <h2>
             {{ idea.title }}
         </h2>
