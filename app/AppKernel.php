@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Wa\AdminBundle\WaAdminBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Apoutchika\LoremIpsumBundle\ApoutchikaLoremIpsumBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
