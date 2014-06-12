@@ -19,8 +19,8 @@ class ThemeType extends AbstractType
         $builder
             ->add('title', 'text')
             ->add('description', 'textarea')
-            ->add('week', 'integer')
-            ->add('year','integer')
+            ->add('week', 'integer', array('label' => 'Field', 'data' => date('W')))
+            ->add('year','integer', array('label' => 'Field', 'data' => date('Y')))
         ;
     }
     
