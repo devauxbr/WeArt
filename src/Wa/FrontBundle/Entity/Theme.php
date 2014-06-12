@@ -4,6 +4,7 @@ namespace Wa\FrontBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Theme
@@ -48,6 +49,11 @@ class Theme
      * @var integer
      *
      * @ORM\Column(name="week", type="integer")
+     * 
+     * @Assert\Range(
+     *  min = 1,
+     *  max = 52)
+     * 
      */
     private $week;
 
