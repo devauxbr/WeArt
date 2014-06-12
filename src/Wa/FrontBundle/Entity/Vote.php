@@ -126,4 +126,15 @@ class Vote
     {
         return $this->account;
     }
+    
+     /**
+     * Constructor
+     */
+    public function __construct($idea=null,$account=null)
+    {
+        $this->date = new \Datetime();
+        $this->idea = $idea;
+        $this->account = $account;
+    }
+
 }
