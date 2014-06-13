@@ -36,12 +36,29 @@ class IdeaRepository extends EntityRepository {
                 ->where('v.date >= :date')->setParameter('date', $date->sub(\DateInterval::createFromDateString('1 weeks')))
                 ->orderby('nbVotes', 'DESC')
                 ->groupBy('v.idea');
-        
+
         return $qb->getQuery()->getResult();
     }
-    
-    public function searchIdea($discipline, $theme, $tags) {
-        return $this->findAll();
+
+    public function searchIdeas($discipline, $theme, $tags) {
+        // echo(count($discipline)); echo(count($theme)); echo(count($tags));
+        // exit();
+        // "left join" so that ideas that don't has vote yet still appear in search :
+        $qb = $this->createQueryBuilder('i')
+                ->select('i, count(v.id) AS HIDDEN nbVotes')
+                ->leftJoin('i.votes', 'v')
+                ->leftJoin('i.tags', 't')
+                ->where('i.discipline = :discipline')
+                ->setParameter('discipline', $discipline)
+                ->andWhere('i.theme = :theme')
+                ->setParameter('theme', $theme)
+                ->orderBy('nbVotes', 'DESC')
+                ->groupBy('i');
+        foreach($tags as $i => $tag) {
+            $qb->andWhere('t.title = :tag' . $i)
+                    ->setParameter('tag' . $i, $tag);
+        }
+        return $qb->getQuery()->getResult();
     }
 
 }

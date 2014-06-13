@@ -59,24 +59,79 @@ class HomeController extends Controller {
     }
 
     public function searchAction() {
-        $idea = new Idea();
-        $form = $this->createForm(new IdeaSearchType, $idea);
+        return $this->render('WaFrontBundle:Home:search.html.twig');
+    }
+    
+    /*
+     * Handle a Post request with JSON content with this array structure:
+     * { 'text': 'TEXT' }
+     * for more info about client side : http://www.gillesgallais.com/autocomplete-sur-symfony2/
+     */
+    public function tagAutocompleteAction() {
+        $request = $this->get('request');
+        // Si requête POST, c'est que l'utilisateur a saisie une recherche :
+        if ($request->getMethod() == 'POST') {
+            $params = array();
+            $content = $this->get("request")->getContent();
+            if (!empty($content)) {
+                $params = json_decode($content, true); // 2nd param to get as array
+            } 
+            
+            if ($params && array_key_exists('text', $params)) {
+                $arrayResonse = array();
+                $tagsResult = $em->getRepository('WaFrontBundle:Tag')->findAutocompleteTitles($params['text']);
+
+                // Building Json Data :
+                $jsonData = json_encode($tagsResult);
+
+                // Building HTTP Response :
+                $response = new JsonResponse();
+                $response->setData($jsonData); // Output: {"name":"foo","age":99});
+                return $response;
+            }
+            
+        }
+        return null;
+    }
+
+    /*
+     * Handle a Post request with JSON content with this array structure:
+     * { 'discipline': 'ID', 'theme': 'ID', tags: ['title1', 'title2', ...] }
+     */
+    public function searchJsonAction() {
         $em = $this->getDoctrine()->getManager();
 
         $request = $this->get('request');
         // Si requête POST, c'est que l'utilisateur a saisie une recherche :
         if ($request->getMethod() == 'POST') {
-            $form->bind($request);
+            $params = array();
+            $content = $this->get("request")->getContent();
+            if (!empty($content)) {
+                $params = json_decode($content, true); // 2nd param to get as array
+            } 
 
-            if ($form->isValid()) {
-                $ideas = $em->getRepository('WaFrontBundle:Idea')->searchIdea(
-                        $idea->getDiscipline(), $idea->getTheme(), $idea->getTags());
+            if ($params &&
+                    array_key_exists('discipline', $params) &&
+                    array_key_exists('theme', $params) &&
+                    array_key_exists('tags', $params)) {
+                $tags = new \Doctrine\Common\Collections\ArrayCollection();
+                //Checking if tags already exists and replacing by existing ones :
+                foreach ($params['tags'] as $tag) {
+                    $existingTag = $em->getRepository('WaFrontBundle:Tag')->findOneByTitle($tag['title']);
+                    if ($existingTag) {
+                        $tags->add($tag);
+                    }
+                }
+
+                $ideas = $em->getRepository('WaFrontBundle:Idea')->searchIdeas(
+                        $em->getRepository('WaFrontBundle:Discipline')->find($params['discipline']),
+                        $em->getRepository('WaFrontBundle:Theme')->find($params['theme']), 
+                        $tags
+                        );
 
                 // Building Json Data :
                 $serializer = $this->container->get('serializer');
                 $jsonData = $serializer->serialize($ideas, 'json');
-                echo($jsonData);
-                exit();
 
                 // Building HTTP Response :
                 $response = new JsonResponse();
@@ -84,13 +139,9 @@ class HomeController extends Controller {
                 return $response;
             }
         }
-
-        // Sinon c'est qu'on affiche la page pour la première fois :
-
-
-        return $this->render('WaFrontBundle:Home:search.html.twig', array(
-                    'form' => $form->createView(),
-        ));
+        
+        // Si on arrive ici ce n'est pas normal ! mais on affiche la page normal :
+        return $this->render('WaFrontBundle:Home:search.html.twig');
     }
 
     public function addIdeaAction() {
