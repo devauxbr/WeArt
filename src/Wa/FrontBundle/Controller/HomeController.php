@@ -82,8 +82,7 @@ class HomeController extends Controller {
                 $tagsResult = $em->getRepository('WaFrontBundle:Tag')->findAutocompleteTitles($params['text']);
 
                 // Building Json Data :
-                $serializer = $this->container->get('serializer');
-                $jsonData = $serializer->serialize($ideas, 'json');
+                $jsonData = json_encode($tagsResult);
 
                 // Building HTTP Response :
                 $response = new JsonResponse();
