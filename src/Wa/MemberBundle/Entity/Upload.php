@@ -23,6 +23,7 @@ class Upload {
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Expose
      */
     private $id;
 
@@ -37,6 +38,7 @@ class Upload {
      * @var string
      *
      * @ORM\Column(name="path", type="string", length=255)
+     * @JMS\Expose
      */
     private $path;
     private $file;
