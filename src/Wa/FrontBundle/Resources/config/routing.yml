@@ -17,4 +17,9 @@ wa_front_json_search:
 wa_front_json_autocomplete:
     pattern:  /tag_autocomplete
     defaults: { _controller: WaFrontBundle:Home:tagAutocomplete }
-
+    
+wa_front_consult_idea:
+    pattern:  /consult_idea/{idIdea}
+    defaults: { _controller: WaFrontBundle:Home:ConsultIdea }
+    requirements:
+        page:  \d+

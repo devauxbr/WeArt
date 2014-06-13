@@ -165,5 +165,18 @@ class HomeController extends Controller {
                     'form' => $form->createView(),
         ));
     }
+    
+    public function consultIdeaAction($idIdea) {
+        $em = $this->getDoctrine()->getManager();
+        $idea = $em->getRepository('WaFrontBundle:Idea')->findOneById($idIdea);
+        $uploads = $idea->getUploads();
+        $voteNumber = $idea->getVotesCount();
+        return $this->render('WaFrontBundle:Home:consultationIdea.html.twig', array(
+                    'idea' => $idea,
+                    'imageIdea' => $uploads,
+                    'vote' => $voteNumber,
+        ));
+
+    }
 
 }

@@ -396,4 +396,9 @@ class Idea
     {
         return $this->votes;
     }
+    
+    public function getVotesCount()
+    {
+        return count($this->votes);
+    }
 }
