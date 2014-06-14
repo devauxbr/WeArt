@@ -178,5 +178,16 @@ class HomeController extends Controller {
         ));
 
     }
+    
+    public function FAQAction() {
+        return $this->render('WaFrontBundle:Static:FAQ.html.twig');
+    }
+    
+    public function identityAction() {
+        return $this->render('WaFrontBundle:Static:identity.html.twig');
+    }
 
+    public function rulesAction() {
+        return $this->render('WaFrontBundle:Static:rules.html.twig');
+    }
 }

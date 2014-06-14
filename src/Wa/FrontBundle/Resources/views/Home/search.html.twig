@@ -1,13 +1,13 @@
 {% extends "::front.html.twig" %}
 
 {% block title %}
-	{{ parent() }}Recherche
+    {{ parent() }}Recherche
 {% endblock %}
 
 {% block javascripts %}
-	{{ parent() }}
-	
-	
+    {{ parent() }}
+
+
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 
     {# Voici le script en question : #}
@@ -74,20 +74,24 @@
                 });
             }
         });
-        
+
     </script>
 {% endblock %}
 
 {% block content %}
-    <h1>TODO</h1>
-    <p><a href="https://trello.com/c/sXklkuHw">Liens vers la tâche Trello</a></p>
-    
-    <h3>Formulaire d'idée</h3>
+    <article class="waBlock">
+        <div class="container">
+            <h1>TODO</h1>
+            <p><a href="https://trello.com/c/sXklkuHw">Liens vers la tâche Trello</a></p>
 
-    <div class="well">
-      <form method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
-        <input type="submit" class="btn btn-primary" />
-      </form>
-    </div>
+            <h3>Formulaire d'idée</h3>
+
+            <div class="well">
+                <form method="post" {{ form_enctype(form) }}>
+                    {{ form_widget(form) }}
+                    <input type="submit" class="btn btn-primary" />
+                </form>
+            </div>
+        </div>
+    </article>
 {% endblock %}

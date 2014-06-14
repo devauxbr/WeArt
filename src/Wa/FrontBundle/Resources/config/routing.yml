@@ -23,3 +23,15 @@ wa_front_consult_idea:
     defaults: { _controller: WaFrontBundle:Home:ConsultIdea }
     requirements:
         page:  \d+
+        
+wa_front_faq:
+    pattern:  /FAQ
+    defaults: { _controller: WaFrontBundle:Home:FAQ }
+    
+wa_front_identity:
+    pattern:  /identity
+    defaults: { _controller: WaFrontBundle:Home:identity }
+    
+wa_front_rules:
+    pattern:  /rules
+    defaults: { _controller: WaFrontBundle:Home:rules }
