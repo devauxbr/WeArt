@@ -130,6 +130,7 @@ class HomeController extends Controller {
                         );
 
                 // Building Json Data :
+                // TODO : edit annotations in every entity definition to chose which attributes to send
                 $serializer = $this->container->get('serializer');
                 $jsonData = $serializer->serialize($ideas, 'json');
 
