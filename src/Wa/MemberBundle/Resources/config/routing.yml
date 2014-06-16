@@ -20,3 +20,9 @@ fos_user_change_password:
 wa_add_idea:
     pattern: /add_idea
     defaults: { _controller: WaMemberBundle:Member:addIdea }
+    
+wa_vote_idea:
+    pattern: /vote/{idIdea}
+    defaults: { _controller: WaMemberBundle:Member:addVoteIdea}
+    requirements:
+        page:  \d+

@@ -10,6 +10,28 @@ wa_front_search:
     pattern:  /search
     defaults: { _controller: WaFrontBundle:Home:search }
     
+wa_front_json_search:
+    pattern:  /json_search
+    defaults: { _controller: WaFrontBundle:Home:searchJson }
 
-
-
+wa_front_json_autocomplete:
+    pattern:  /tag_autocomplete
+    defaults: { _controller: WaFrontBundle:Home:tagAutocomplete }
+    
+wa_front_consult_idea:
+    pattern:  /consult_idea/{idIdea}
+    defaults: { _controller: WaFrontBundle:Home:ConsultIdea }
+    requirements:
+        page:  \d+
+        
+wa_front_faq:
+    pattern:  /FAQ
+    defaults: { _controller: WaFrontBundle:Home:FAQ }
+    
+wa_front_identity:
+    pattern:  /identity
+    defaults: { _controller: WaFrontBundle:Home:identity }
+    
+wa_front_rules:
+    pattern:  /rules
+    defaults: { _controller: WaFrontBundle:Home:rules }

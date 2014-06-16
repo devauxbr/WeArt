@@ -1,0 +1,42 @@
+{% extends "::front.html.twig" %}
+
+{% block title %}
+	{{ parent() }}Consultation
+{% endblock %}
+
+
+{% block content %}
+    
+    <h2>Titre :</h2>
+        <p>
+            {{ idea.title }}
+        </p>
+        
+    <h2>Theme :</h2>
+        <p>
+            {{ idea.theme.title }}
+        </p>
+
+    <h2>Description :</h2>
+        <p>
+            {{ idea.description }}
+        </p>
+        
+    <h2>Contributeur :</h2>
+        <p>
+            {{ idea.account.userName }}
+        </p>
+        
+    <h2>Image :</h2>
+    {% for uploads in imageIdea %}
+        <h2>
+            {{ uploads.name }}
+        </h2>
+    {% endfor %}
+    
+    <h2>Nombre de vote :</h2>
+        <h2>
+            {{ vote }}
+        </h2>
+
+{% endblock %}
