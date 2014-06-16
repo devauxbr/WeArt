@@ -236,8 +236,13 @@ header h2
 .waBlock p
 {
 	margin-top: 20px;
-	text-indent:50px;
+	text-indent: 50px;
 	text-align: justify;
+}
+
+.waBlock p.no-indent
+{
+	text-indent: 0;
 }
 
 /* ---------------------- FOOTER ---------------------- */
@@ -613,4 +618,20 @@ aside.tips p .glyphicon
 aside.tips span.question
 {
 	margin-left: 50px;
+}
+
+/* ---------------------- LIST ---------------------- */
+tr.beforeLnk th
+{
+	text-align: center;
+}
+
+table .bad
+{
+	color: darkred;
+}
+
+table .good
+{
+	color: darkgreen;
 }
