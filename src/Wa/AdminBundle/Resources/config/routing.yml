@@ -9,6 +9,10 @@ wa_add_article:
 wa_add_theme:
     pattern: /add_theme
     defaults: { _controller: WaAdminBundle:Admin:addTheme }
+
+wa_list_theme:
+    pattern: /list_theme
+    defaults: { _controller: WaAdminBundle:Admin:listTheme }
     
 wa_clear_site:
     pattern: /clear_site

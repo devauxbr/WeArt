@@ -3,6 +3,7 @@
 namespace Wa\FrontBundle\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
@@ -67,8 +68,7 @@ class HomeController extends Controller {
      * { 'text': 'TEXT' }
      * for more info about client side : http://www.gillesgallais.com/autocomplete-sur-symfony2/
      */
-    public function tagAutocompleteAction() {
-        $request = $this->get('request');
+    public function tagAutocompleteAction(Request $request) {
         // Si requête POST, c'est que l'utilisateur a saisie une recherche :
         if ($request->getMethod() == 'POST') {
             $params = array();
@@ -98,17 +98,17 @@ class HomeController extends Controller {
      * Handle a Post request with JSON content with this array structure:
      * { 'discipline': 'ID', 'theme': 'ID', tags: ['title1', 'title2', ...] }
      */
-    public function searchJsonAction() {
+    public function searchJsonAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
 
-        $request = $this->get('request');
         // Si requête POST, c'est que l'utilisateur a saisie une recherche :
         if ($request->getMethod() == 'POST') {
             $params = array();
             $content = $this->get("request")->getContent();
             if (!empty($content)) {
                 $params = json_decode($content, true); // 2nd param to get as array
-            } 
+            }
+			
 
             if ($params &&
                     array_key_exists('discipline', $params) &&
@@ -139,10 +139,20 @@ class HomeController extends Controller {
                 $response->setData($jsonData); // Output: {"name":"foo","age":99});
                 return $response;
             }
+			else
+			{
+				$response = new JsonResponse();
+                $response->setData(array('err' => 'missing parameters'));
+				$response->setStatusCode(400);
+                return $response;
+			}
         }
         
         // Si on arrive ici ce n'est pas normal ! mais on affiche la page normal :
-        return $this->render('WaFrontBundle:Home:search.html.twig');
+        $response = new JsonResponse();
+		$response->setData(array('err' => 'must be post'));
+		$response->setStatusCode(400);
+		return $response;
     }
 
     public function addIdeaAction() {
