@@ -113,7 +113,23 @@ class AdminController extends Controller {
 
 		return $this->render('WaAdminBundle:Default:clearSite.html.twig');
 	}
+	
+	private function getRandomDate()
+	{
+		$date = new \DateTime();
+		$toSub = new \DateInterval('PT0S');
+		$toSub->y = 0;
+		$toSub->m = 0;
+		$toSub->d = rand(0, 30);
+		$toSub->h = rand(0, 24);
+		$toSub->i = rand(0, 60);
+		$toSub->s = rand(0, 60);
 
+		$date->sub($toSub);
+		
+		return $date;
+	}
+	
 	public function fillSiteAction() {
 		// Update schema
 		$this->execCommand(array('command' => 'doctrine:schema:create'));
@@ -133,29 +149,16 @@ class AdminController extends Controller {
 		$loremIpsum = $this->get('apoutchika.lorem_ipsum');
 
 		// --------------> Article
-		$article = new Article();
-		$article->setTitle("Une news");
-		$article->setContent("Proin nonummy, sit amet eros. Nullam ornare. Praesent odio ligula, dapibus sed, tincidunt eget, dictum ac, nibh. Nam quis lacus. Nunc eleifend molestie velit. Morbi lobortis quam eu velit. Donec euismod vestibulum massa. Donec non lectus. Aliquam commodo lacus sit amet nulla. Cras dignissim elit et augue. Nullam non diam.");
-		$article->setCreateDate(new \DateTime("2014-06-01 11:14:15"));
-		$article->setEditDate(new \DateTime("2014-06-01 11:14:15"));
-		$article->setPublished(true);
-		$em->persist($article);
-
-		$article = new Article();
-		$article->setTitle("Une autre news");
-		$article->setContent(" Nullam non diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In hac habitasse platea dictumst. Aenean vestibulum. Nullam ornare. ");
-		$article->setCreateDate(new \DateTime("2014-06-01 11:14:15"));
-		$article->setEditDate(new \DateTime("2014-06-01 11:14:15"));
-		$article->setPublished(true);
-		$em->persist($article);
-
-		$article = new Article();
-		$article->setTitle("Encore une autre news");
-		$article->setContent(" Lorem ipsum dolor sit amet, aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident mollit anim id est laborum. ");
-		$article->setCreateDate(new \DateTime("2014-06-01 11:14:15"));
-		$article->setEditDate(new \DateTime("2014-06-01 11:14:15"));
-		$article->setPublished(true);
-		$em->persist($article);
+		for($i = 0; $i < 16; $i++)
+		{
+			$article = new Article();
+			$article->setTitle($loremIpsum->getWords(3, 7));
+			$article->setContent($loremIpsum->getParagraphs(1));
+			$article->setCreateDate($this->getRandomDate());
+			$article->setEditDate($this->getRandomDate());
+			$article->setPublished(true);
+			$em->persist($article);
+		}
 
 		// --------------> Users
 		$users = array();
@@ -255,7 +258,7 @@ class AdminController extends Controller {
 		$discplines[] = $discpline;
 		
 		// --------------> Tags
-		$tagCount = rand(10, 20);
+		$tagCount = rand(15, 30);
 		$tagArray = array();
 		for($i = 0; $i < $tagCount; $i++)
 		{
@@ -310,7 +313,7 @@ class AdminController extends Controller {
 				{
 					$vote = new Vote();
 					
-					$vote->setDate(new \DateTime());
+					$vote->setDate($this->getRandomDate());
 					$vote->setAccount($users[rand(0, count($users) - 1)]);
 					$vote->setIdea($idea);
 					
