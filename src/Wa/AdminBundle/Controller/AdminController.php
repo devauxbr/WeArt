@@ -134,6 +134,8 @@ class AdminController extends Controller {
 		// Update schema
 		$this->execCommand(array('command' => 'doctrine:schema:create'));
 		
+		gc_enable();
+		
 		set_time_limit(0);
 
 		// Enable garbage collector
@@ -274,8 +276,8 @@ class AdminController extends Controller {
 
 		for ($i = 0; $i < 5; $i++) {
 			$theme = new Theme();
-			$theme->setTitle('Le rève n°' . $i);
-			$theme->setDescription('Montrer vos rèves (édition ' . $i . ')');
+			$theme->setTitle($loremIpsum->getWords(1, 4));
+			$theme->setDescription($loremIpsum->getWords(10, 20));
 			$theme->setYear(2014);
 			$theme->setWeek(22 + $i);
 			$em->persist($theme);
@@ -323,11 +325,11 @@ class AdminController extends Controller {
 				$em->persist($idea);
 			}
 			
-			
+			gc_collect_cycles();
 			$em->flush();
 		}
 
-		
+		gc_collect_cycles();
 		$em->flush();
 		// --------------> Ideas
 
