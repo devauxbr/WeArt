@@ -477,6 +477,11 @@ span.tag
 	max-width: 220px; /* 196 + 12 * 2 px */
 }
 
+.siteContent
+{
+        border-radius: 10px;
+}
+
 .stepsSizer img
 {
 	display: block;

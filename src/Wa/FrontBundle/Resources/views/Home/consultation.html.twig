@@ -26,6 +26,55 @@
 {% endblock %}
 
 {% block content %}
+    <article class="waBlock">
+        <div class="container">
+            <div class="col-md-12 newsContainer">
+                <div class="col-md-1"></div>
+                <div class="slider-in">
+                    <p>this is a test</p>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+    </article>
+
+    <article class="waBlock">
+        <div class="container">
+            <h1>Top du jour</h1>
+            <div class="col-md-12 slider ">
+                <div class="slider-border">
+                    <span class="out-bt"><button class="btn btn-primary slider-left"><span>&lt;</span></button></span>
+                </div><!--
+
+                --><div class="slider-content">
+                    <div class="slider-in">
+                        <div class="row">
+                            <div class="col-sm-3 newsContainer siteContent">
+                                <img src="http://placehold.it/196x196">
+                            </div><!--
+
+                            --><div class="col-sm-3 newsContainer siteContent">
+                                <img src="http://placehold.it/196x196">
+                            </div><!--
+
+                            --><div class="col-sm-3">
+                                <img src="http://placehold.it/196x196">
+                            </div><!--
+
+                            --><div class="col-sm-3">
+                                <img src="http://placehold.it/196x196">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--
+
+                --><div class="slider-border">
+                    <span class="out-bt"><button class="btn btn-primary slider-right"><span>&gt;</span></button></span>
+                </div>
+            </div>
+        </div>
+    </article>
+<!--
     <h1>TODO</h1>
     <p><a href="https://trello.com/c/jnNd6lpG">Liens vers la tâche Trello</a></p>
     
@@ -56,4 +105,5 @@
             {{ idea.description }}
         </p>
     {% endfor %}
+-->
 {% endblock %}
