@@ -62,7 +62,7 @@
 								</p>
                                                                 
 								<p>
-									Il suffit pour cela d'être connecté. La procédure se veut la plus simple et assistée possible (Facebook, Google, CAS, ou autres)
+									Il suffit pour cela d'être connecté. La procédure se veut la plus simple et assistée possible (avec un compte Facebook, Google, CAS-UTC, ou en créant son propre compte WeArt)
 								</p>
 							</div>
 						</div>
@@ -127,9 +127,6 @@
 						<button></button>
 						<button></button>
 						<button></button>
-					</div>
-					<div class="col-md-4">
-						<span class="out-bt"><button class="btn btn-primary">C'est parti -&gt;</button><span>
 					</div>
 				</div>
 			</div>
@@ -196,9 +193,13 @@
 						<h4>{{ themes[2].title }}</h4>
 						<p>{{ themes[2].description }}</p>
 					</div>
-				</div>
-				
-			</div>		
+				</div><!--
+
+				--><div class="cest-partie-button">
+                                    <a href="{{ path('wa_front_consultation') }}"<span class="out-bt"><button class="btn btn-primary">C'est parti -&gt;</button></span>
+                                </div>
+			</div>	
+                                        
 			
 		</div>
 	</article>
