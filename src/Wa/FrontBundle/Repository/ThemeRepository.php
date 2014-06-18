@@ -27,6 +27,21 @@ class ThemeRepository extends EntityRepository {
 
         return $qb->getQuery()->getResult();
     }
+	
+	public function getPrevThemes($count) {
+        // current week number :
+        $date = new \DateTime();  // today
+        $week = (int) $date->format("W");
+        
+        // select theme from previous, current and next week :
+        $qb = $this->createQueryBuilder('t');
+        $qb->where('t.week <= :weekPlus')
+                ->setParameter('weekPlus', $week)
+                ->orderBy('t.week', 'DESC')
+				->setMaxResults($count);
+
+        return $qb->getQuery()->getResult();
+    }
     
     public function getCurrentTheme() {
         // current week number :

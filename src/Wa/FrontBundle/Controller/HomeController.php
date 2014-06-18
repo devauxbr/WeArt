@@ -4,15 +4,8 @@ namespace Wa\FrontBundle\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Wa\FrontBundle\Entity\Article;
-use Wa\FrontBundle\Entity\Discipline;
 use Wa\FrontBundle\Entity\Idea;
-use Wa\MemberBundle\Entity\Account;
-use Wa\FrontBundle\Form\IdeaSearchType;
 
 class HomeController extends Controller {
 
@@ -59,7 +52,15 @@ class HomeController extends Controller {
     }
 
     public function searchAction() {
-        return $this->render('WaFrontBundle:Home:search.html.twig');
+		$em = $this->getDoctrine()->getManager();
+		
+		$disciplines = $em->getRepository('WaFrontBundle:Discipline')->findAll();
+		$themes = $em->getRepository('WaFrontBundle:Theme')->getPrevThemes(15);
+		
+        return $this->render('WaFrontBundle:Home:search.html.twig', array(
+			'disciplines' => $disciplines,
+			'themes' => $themes
+		));
     }
     
     /*
@@ -77,8 +78,9 @@ class HomeController extends Controller {
             } 
             
             if ($params && array_key_exists('text', $params)) {
-                $arrayResonse = array();
-                $tagsResult = $em->getRepository('WaFrontBundle:Tag')->findAutocompleteTitles($params['text']);
+				$em = $this->getDoctrine()->getManager();
+                $tagsResult = $em->getRepository('WaFrontBundle:Tag')
+						->findAutocompleteTitles($params['text']);
 
                 // Building Json Data :
                 $jsonData = json_encode($tagsResult);

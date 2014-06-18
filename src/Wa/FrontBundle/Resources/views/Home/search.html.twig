@@ -15,7 +15,26 @@
             <p><a href="https://trello.com/c/sXklkuHw">Liens vers la tâche Trello</a></p>
 
             <h3>Formulaire d'idée</h3>
-
+			
+			<div class="btn-group">
+				{% for discipline in disciplines %}
+					<button data-id="{{ discipline.id }}" type="button" class="btn btn-default {% if loop.index == 1 %}active{% endif %}">{{ discipline.title }}</button>
+				{% endfor %}
+			</div>
+			
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					{{ themes[0].title }}
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					{% for theme in themes %}
+						<li><a data-id="{{ theme.id }}" data-title="{{ theme.title }}" href="#">{{ theme.year }} - {{ theme.week }} | {{ theme.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+				
+			<span class="out-bt"><button class="btn btn-primary">Lancer la recherche -&gt;</button><span>
         </div>
     </article>
 {% endblock %}

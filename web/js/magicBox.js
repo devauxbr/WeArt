@@ -12,7 +12,7 @@ wa.MagicBox = new dejavu.Class.declare({
 	initialize: function(root) {
 		if(root.length !== 1)
 		{
-			throw 'One an only one element should be provided to MagicBox';
+			throw 'One and only one element should be provided to MagicBox';
 		}
 		
 		this._root = root;
