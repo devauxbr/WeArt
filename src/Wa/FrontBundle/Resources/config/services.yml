@@ -2,6 +2,7 @@ parameters:
 #    wa_front.example.class: Wa\FrontBundle\Example
 
 services:
-#    wa_front.example:
-#        class: %wa_front.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    wa.twig.wa_html_truncate_extension:
+        class: Wa\FrontBundle\Twig\HtmlTruncate
+        tags:
+            - { name: twig.extension }
