@@ -16,20 +16,20 @@ class TagRepository extends EntityRepository {
         $qb = $this->createQueryBuilder('t');
         $qb->select('t')
                 ->where('t.title LIKE :title')
-                ->setParameter('term', '%' . $title . '%')
+                ->setParameter('title', '%' . $title . '%')
                 ->setMaxResults($limit);
 
         $arrayAss = $qb->getQuery()
-                ->getArrayResult();
+                ->getResult();
         
         // Transformer le tableau associatif en un tableau standard
-	$array = array();
-	foreach($arrayAss as $title)
-	{
-		$array[] = $title->getTitle();
-	}
- 
-	return $array;
+		$array = array();
+		foreach($arrayAss as $title)
+		{
+			$array[] = $title->getTitle();
+		}
+
+		return $array;
     }
 
 }

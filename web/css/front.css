@@ -298,36 +298,6 @@ footer h3
 	margin-top: -30px; /* 12 - 42 */
 }
 
-.btn-group .btn::before
-{
-	display: none;
-}
-
-.btn-group .btn::after
-{
-	display: inline;
-	content: "|";
-	margin: 0;
-	margin-left: 10px;
-	padding: 0;
-	background-color: transparent;
-	position: inherit;
-	border: none;
-	z-index: auto;
-	color: white;
-}
-
-.btn-group .btn:last-child::after
-{
-	display: none;
-}
-
-.btn-group .btn
-{
-	margin-right: 0;
-	padding-right: 1px;
-}
-
 .out-bt
 {
 	position: relative;
@@ -404,6 +374,11 @@ span.tag
 	vertical-align: middle;
 	
 	margin-right: 15px;
+}
+
+span.tag.greyTag
+{
+	background-color: #c9c9c9;
 }
 
 .waBlock a
@@ -676,3 +651,101 @@ table .good
 {
 	color: darkgreen;
 }
+
+/* ---------------------- Search ---------------------- */
+.btn-group .btn::before
+{
+	display: none;
+}
+
+.btn-group .btn::after
+{
+	display: inline;
+	content: "|";
+	margin: 0;
+	padding: 0;
+	left: 12px;
+	background-color: transparent;
+	position: relative;
+	border: none;
+	z-index: auto;
+	color: white;
+}
+
+.btn-group .btn:last-child::after
+{
+	display: none;
+}
+
+.btn-group
+{
+	padding: 0;
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: #3ef942;
+	border-radius: 10px;
+	margin: 5px;
+	margin-bottom: 0;
+}
+
+.btn-group .btn
+{
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-right: 0;
+	padding-right: 10px;
+	padding-left: 12px;
+	height: 62px;
+	padding-top: 11px;
+	border-radius: 10px;
+	color: white;
+}
+
+.btn-group .btn.active
+{
+	border-bottom: 6px solid #3ef942;
+	background-color: #29c72c;
+}
+
+
+.filterArea
+{
+	width: 713px;
+	margin: 74px;
+	margin-top: 0;
+	border: 11px solid #c9c9c9;
+	border-top: none;
+	border-radius: 23px;
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+	padding: 51px;
+}
+
+
+.themeList
+{
+	height: 261px;
+	overflow: auto;
+}
+
+.themeList .theme
+{
+	display: block;
+	width: 95%;
+	text-align: center;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	
+	cursor: pointer;
+	
+	border-left: 4px solid #c9c9c9;
+	
+	overflow: hidden;
+	height: 32px;
+}
+
+.themeList .theme.active
+{
+	border-left: 4px solid #3ef942;
+}
+

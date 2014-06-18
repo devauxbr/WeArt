@@ -4,8 +4,77 @@
     {{ parent() }}Recherche
 {% endblock %}
 
+{% block stylesheets %}
+	{{ parent() }}
+	
+	<link rel="stylesheet" href="{{ asset('css/le-frog/jquery-ui-1.10.4.custom.min.css') }}">
+{% endblock %}
+
 {% block javascripts %}
-    {{ parent() }}
+	{{ parent() }}
+	<script src="{{ asset('js/ext/jquery-ui-1.10.4.custom.min.js') }}"></script>
+	<script src="{{ asset('js/ideaSearch.js') }}"></script>
+	
+	<script>
+		$(function(){
+			$(".ideaSearch").each(function() {
+				new wa.IdeaSearch($(this));
+			});
+		});
+	</script>
+	
+	<script>
+		 $(function ()
+		 {
+		 	function log(message)
+		 	{
+		 		$("<div>").text(message).prependTo("#log");
+		 		$("#log").scrollTop(0);
+		 	}
+		 	$("#findTagInput").autocomplete(
+		 	{
+		 		source: function (request, response)
+		 		{
+		 			$.ajax(
+		 			{
+		 				url: "{{ path('wa_front_json_autocomplete') }}",
+		 				dataType: "jsonp",
+						type: 'PSOT',
+						data:
+		 				{
+							text: request.term
+		 				},
+		 				success: function (data)
+		 				{
+							console.log(request);
+		 					response($.map(data, function (item)
+		 					{
+		 						return {
+		 							label: item,
+		 							value: item
+		 						}
+		 					}));
+		 				}
+		 			});
+		 		},
+		 		minLength: 2,
+		 		select: function (event, ui)
+		 		{
+		 			log(ui.item ?
+		 				"Selected: " + ui.item.label :
+		 				"Nothing selected, input was " + this.value);
+		 		},
+		 		open: function ()
+		 		{
+		 			$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+		 		},
+		 		close: function ()
+		 		{
+		 			$(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+		 		}
+		 	});
+		 });
+	</script>
 {% endblock %}
 
 {% block content %}
@@ -16,25 +85,49 @@
 
             <h3>Formulaire d'idée</h3>
 			
-			<div class="btn-group">
-				{% for discipline in disciplines %}
-					<button data-id="{{ discipline.id }}" type="button" class="btn btn-default {% if loop.index == 1 %}active{% endif %}">{{ discipline.title }}</button>
-				{% endfor %}
-			</div>
-			
-			<div class="btn-group">
-				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-					{{ themes[0].title }}
-					<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-					{% for theme in themes %}
-						<li><a data-id="{{ theme.id }}" data-title="{{ theme.title }}" href="#">{{ theme.year }} - {{ theme.week }} | {{ theme.title }}</a></li>
+			<div class="ideaSearch">
+				<div class="btn-group disciplines">
+					{% for discipline in disciplines %}
+						<button data-id="{{ discipline.id }}" type="button" class="btn btn-default {% if loop.index == 1 %}active{% endif %}">{{ discipline.title }}</button>
 					{% endfor %}
-				</ul>
-			</div>
+				</div>
 				
-			<span class="out-bt"><button class="btn btn-primary">Lancer la recherche -&gt;</button><span>
+				<div class="filterArea">
+					<div class="row">
+						<div class="col-md-6">
+							<p>Thèmes</p>
+							
+							<div class="themeList">
+								{% for theme in themes %}
+									<span class="tag greyTag theme" data-id="{{ theme.id }}" data-title="{{ theme.title }}">{{ theme.year }} - {{ theme.week }} | {{ theme.title }}</span>
+								{% endfor %}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div>
+								<label for="findTagInput">Trouver un tag :</label><br />
+								<input type="text" id="findTagInput" />
+							</div>
+							
+							<div>
+								<p>Tag(s) sélectionnés :</p>
+								
+								<div>
+									<span class="tag greyTag">Un tag</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<col-md-6></col-md-6>
+						
+						<col-md-6>
+							<span class="out-bt"><button class="btn btn-primary">Lancer la recherche -&gt;</button></span>
+						</col-md-6>
+					</div>
+				</div>
+			</div>
         </div>
     </article>
 {% endblock %}

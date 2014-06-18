@@ -82,17 +82,25 @@ class HomeController extends Controller {
                 $tagsResult = $em->getRepository('WaFrontBundle:Tag')
 						->findAutocompleteTitles($params['text']);
 
-                // Building Json Data :
-                $jsonData = json_encode($tagsResult);
-
                 // Building HTTP Response :
                 $response = new JsonResponse();
-                $response->setData($jsonData); // Output: {"name":"foo","age":99});
+                $response->setData($tagsResult); // Output: {"name":"foo","age":99});
                 return $response;
             }
-            
+			else
+			{
+				$response = new JsonResponse();
+                $response->setData(array('err' => 'missing parameters'));
+				$response->setStatusCode(400);
+                return $response;
+			}
         }
-        return null;
+        
+        // Si on arrive ici ce n'est pas normal ! mais on affiche la page normal :
+        $response = new JsonResponse();
+		$response->setData(array('err' => 'must be post'));
+		$response->setStatusCode(400);
+		return $response;
     }
 
     /*
