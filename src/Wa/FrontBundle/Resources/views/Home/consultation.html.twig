@@ -1,28 +1,28 @@
 {% extends "::front.html.twig" %}
 
 {% block title %}
-	{{ parent() }}Consultation
+    {{ parent() }}Consultation
 {% endblock %}
 
 {% block javascripts %}
-	{{ parent() }}
-	
-	{# Jquery everywhere #}
-	<script src="{{ asset('js/ext/jquery.slides.min.js') }}"></script>
-	<script src="{{ asset('js/mySlider.js') }}"></script>
-	<script src="{{ asset('js/magicBox.js') }}"></script>
-	
-	<script>
-		$(function(){
-			$(".slider").each(function() {
-				new wa.Slider($(this));
-			});
-			
-			$(".magic-box").each(function() {
-				new wa.MagicBox($(this));
-			});
-		});
-	</script>
+    {{ parent() }}
+
+    {# Jquery everywhere #}
+    <script src="{{ asset('js/ext/jquery.slides.min.js') }}"></script>
+    <script src="{{ asset('js/mySlider.js') }}"></script>
+    <script src="{{ asset('js/magicBox.js') }}"></script>
+
+    <script>
+        $(function() {
+            $(".slider").each(function() {
+                new wa.Slider($(this));
+            });
+
+            $(".magic-box").each(function() {
+                new wa.MagicBox($(this));
+            });
+        });
+    </script>
 {% endblock %}
 
 {% block content %}
@@ -31,7 +31,8 @@
             <div class="col-md-12 newsContainer">
                 <div class="col-md-1"></div>
                 <div class="slider-in">
-                    <p>this is a test</p>
+                    <h1>Thème de la semaine</h1>
+                    <p>Texte à venir</p>
                 </div>
                 <div class="col-md-1"></div>
             </div>
@@ -49,20 +50,32 @@
                 --><div class="slider-content">
                     <div class="slider-in">
                         <div class="row">
-                            <div class="col-sm-3 newsContainer siteContent">
-                                <img src="http://placehold.it/196x196">
-                            </div><!--
-
-                            --><div class="col-sm-3 newsContainer siteContent">
-                                <img src="http://placehold.it/196x196">
-                            </div><!--
-
-                            --><div class="col-sm-3">
-                                <img src="http://placehold.it/196x196">
+                            <div class="col-sm-3">
+                                <div class="newsContainer siteContent">
+                                    <h3>Titre idée</h3>
+                                    <img src="http://placehold.it/196x196">
+                                </div>
                             </div><!--
 
                             --><div class="col-sm-3">
-                                <img src="http://placehold.it/196x196">
+                                <div class="newsContainer siteContent">
+                                    <h3>Titre idée</h3>
+                                    <img src="http://placehold.it/196x196">
+                                </div>
+                            </div><!--
+
+                            --><div class="col-sm-3">
+                                <div class="newsContainer siteContent">
+                                    <h3>Titre idée</h3>
+                                    <img src="http://placehold.it/196x196">
+                                </div>
+                            </div><!--
+
+                            --><div class="col-sm-3">
+                                <div class="newsContainer siteContent">
+                                    <h3>Titre idée</h3>
+                                    <img src="http://placehold.it/196x196">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -74,36 +87,86 @@
             </div>
         </div>
     </article>
-<!--
-    <h1>TODO</h1>
-    <p><a href="https://trello.com/c/jnNd6lpG">Liens vers la tâche Trello</a></p>
     
-    <h1>Theme semaine</h1>
-        <h2>
-            {{ themeSemaine.title }}
-        </h2>
-        <p>
-            {{ themeSemaine.description }}
-        </p>
     
-    <h1>Top Today Ideas</h1>
+    <article class="waBlock">
+        <div class="container">
+            <h1>Top de la semaine</h1>
+            <div class="col-md-12 slider ">
+                <div class="slider-border">
+                    <span class="out-bt"><button class="btn btn-primary slider-left"><span>&lt;</span></button></span>
+                </div><!--
+
+                --><div class="slider-content">
+                    <div class="slider-in">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="newsContainer siteContent">
+                                    <h3>Titre idée</h3>
+                                    <img src="http://placehold.it/196x196">
+                                </div>
+                            </div><!--
+
+                            --><div class="col-sm-3">
+                                <div class="newsContainer siteContent">
+                                    <h3>Titre idée</h3>
+                                    <img src="http://placehold.it/196x196">
+                                </div>
+                            </div><!--
+
+                            --><div class="col-sm-3">
+                                <div class="newsContainer siteContent">
+                                    <h3>Titre idée</h3>
+                                    <img src="http://placehold.it/196x196">
+                                </div>
+                            </div><!--
+
+                            --><div class="col-sm-3">
+                                <div class="newsContainer siteContent">
+                                    <h3>Titre idée</h3>
+                                    <img src="http://placehold.it/196x196">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--
+
+                --><div class="slider-border">
+                    <span class="out-bt"><button class="btn btn-primary slider-right"><span>&gt;</span></button></span>
+                </div>
+            </div>
+        </div>
+    </article>
+    <!--
+        <h1>TODO</h1>
+        <p><a href="https://trello.com/c/jnNd6lpG">Liens vers la tâche Trello</a></p>
+        
+        <h1>Theme semaine</h1>
+            <h2>
+    {{ themeSemaine.title }}
+</h2>
+<p>
+    {{ themeSemaine.description }}
+</p>
+
+<h1>Top Today Ideas</h1>
     {% for idea in todayTopIdeas %}
         <h2>
-            {{ idea.title }}
-        </h2>
-        <p>
-            {{ idea.description }}
-        </p>
+        {{ idea.title }}
+    </h2>
+    <p>
+        {{ idea.description }}
+    </p>
     {% endfor %}
     
     <h1>Top Week Ideas</h1>
     {% for idea in weekTopIdeas %}
         <h2>
-            {{ idea.title }}
-        </h2>
-        <p>
-            {{ idea.description }}
-        </p>
+        {{ idea.title }}
+    </h2>
+    <p>
+        {{ idea.description }}
+    </p>
     {% endfor %}
--->
+    -->
 {% endblock %}

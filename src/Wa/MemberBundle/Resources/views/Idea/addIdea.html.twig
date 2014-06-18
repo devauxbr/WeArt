@@ -74,7 +74,7 @@
                 });
             }
         });
-        
+
         /* Deuxième fonction upload */
         $(document).ready(function() {
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
@@ -138,9 +138,9 @@
                 });
             }
         });
-        
-        
-        
+
+
+
     </script>
 
 {% endblock %}
@@ -148,12 +148,18 @@
 
 {% block content %}
 
-    <h3>Formulaire d'idée</h3>
+    <article class="waBlock">
+        <div class="container">
+            <div class="col-md-12 newsContainer">
+                <h1>Saisir une nouvelle idée</h1>
 
-    <div class="well">
-        <form method="post" {{ form_enctype(form) }}>
-            {{ form_widget(form) }}
-            <input type="submit" class="btn btn-primary" />
-        </form>
-    </div>
+                <div class="well">
+                    <form method="post" {{ form_enctype(form) }}>
+                        {{ form_widget(form) }}
+                        <input type="submit" class="btn btn-primary" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </article>
 {% endblock %}
