@@ -37,10 +37,10 @@
 					{% endfor %}
 				</div>
 				
-				<div class="filterArea">
+				<nav class="filterArea">
 					<div class="row">
 						<div class="col-md-6">
-							<p>Thèmes</p>
+							<h3>Thèmes :</h3>
 							
 							<div class="themeList">
 								{% for theme in themes %}
@@ -50,12 +50,12 @@
 						</div>
 						<div class="col-md-6">
 							<div>
-								<label for="findTagInput">Trouver un tag :</label><br />
+								<label for="findTagInput">Trouver un tag :</label>
 								<input type="text" class="findTagInput" placeholder="Recherche" id="findTagInput" />
 							</div>
 							
 							<div>
-								<p>Tag(s) sélectionnés :</p>
+								<h3>Tag(s) sélectionnés :</h3>
 								
 								<div class="tagPool">
 									
@@ -65,13 +65,15 @@
 					</div>
 
 					<div class="row">
-						<div class="col-md-6"></div>
+						<div class="col-md-3"></div>
 						
-						<div class="col-md-6">
+						<div class="col-md-6 searchBtBlock">
 							<span class="out-bt"><button class="btn btn-primary searchBt">Recherche -&gt;</button></span>
 						</div>
+						
+						<div class="col-md-3"></div>
 					</div>
-				</div>
+				</nav>
 			</div>
         </div>
     </article>
