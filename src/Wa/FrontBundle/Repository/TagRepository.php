@@ -24,9 +24,9 @@ class TagRepository extends EntityRepository {
         
         // Transformer le tableau associatif en un tableau standard
 		$array = array();
-		foreach($arrayAss as $title)
+		foreach($arrayAss as $tag)
 		{
-			$array[] = $title->getTitle();
+			$array[] = array('title' => $tag->getTitle(), 'id' => $tag->getId());
 		}
 
 		return $array;

@@ -16,75 +16,20 @@
 	<script src="{{ asset('js/ideaSearch.js') }}"></script>
 	
 	<script>
+		var autoCompleteUrl = '{{ path('wa_front_json_autocomplete') }}';
+		var searchUrl = '{{ path('wa_front_json_search') }}';
+		
 		$(function(){
 			$(".ideaSearch").each(function() {
 				new wa.IdeaSearch($(this));
 			});
 		});
 	</script>
-	
-	<script>
-		 $(function ()
-		 {
-		 	function log(message)
-		 	{
-		 		$("<div>").text(message).prependTo("#log");
-		 		$("#log").scrollTop(0);
-		 	}
-		 	$("#findTagInput").autocomplete(
-		 	{
-		 		source: function (request, response)
-		 		{
-		 			$.ajax(
-		 			{
-		 				url: "{{ path('wa_front_json_autocomplete') }}",
-		 				dataType: "jsonp",
-						type: 'PSOT',
-						data:
-		 				{
-							text: request.term
-		 				},
-		 				success: function (data)
-		 				{
-							console.log(request);
-		 					response($.map(data, function (item)
-		 					{
-		 						return {
-		 							label: item,
-		 							value: item
-		 						}
-		 					}));
-		 				}
-		 			});
-		 		},
-		 		minLength: 2,
-		 		select: function (event, ui)
-		 		{
-		 			log(ui.item ?
-		 				"Selected: " + ui.item.label :
-		 				"Nothing selected, input was " + this.value);
-		 		},
-		 		open: function ()
-		 		{
-		 			$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
-		 		},
-		 		close: function ()
-		 		{
-		 			$(this).removeClass("ui-corner-top").addClass("ui-corner-all");
-		 		}
-		 	});
-		 });
-	</script>
 {% endblock %}
 
 {% block content %}
     <article class="waBlock">
         <div class="container">
-            <h1>TODO</h1>
-            <p><a href="https://trello.com/c/sXklkuHw">Liens vers la tâche Trello</a></p>
-
-            <h3>Formulaire d'idée</h3>
-			
 			<div class="ideaSearch">
 				<div class="btn-group disciplines">
 					{% for discipline in disciplines %}
@@ -106,28 +51,32 @@
 						<div class="col-md-6">
 							<div>
 								<label for="findTagInput">Trouver un tag :</label><br />
-								<input type="text" id="findTagInput" />
+								<input type="text" class="findTagInput" placeholder="Recherche" id="findTagInput" />
 							</div>
 							
 							<div>
 								<p>Tag(s) sélectionnés :</p>
 								
-								<div>
-									<span class="tag greyTag">Un tag</span>
+								<div class="tagPool">
+									
 								</div>
 							</div>
 						</div>
 					</div>
 
 					<div class="row">
-						<col-md-6></col-md-6>
+						<div class="col-md-6"></div>
 						
-						<col-md-6>
-							<span class="out-bt"><button class="btn btn-primary">Lancer la recherche -&gt;</button></span>
-						</col-md-6>
+						<div class="col-md-6">
+							<span class="out-bt"><button class="btn btn-primary searchBt">Recherche -&gt;</button></span>
+						</div>
 					</div>
 				</div>
 			</div>
         </div>
     </article>
+								
+	<article class="waBlock result">
+		
+	</article>
 {% endblock %}

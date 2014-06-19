@@ -4,6 +4,7 @@ namespace Wa\FrontBundle\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Wa\FrontBundle\Entity\Idea;
 
@@ -84,7 +85,7 @@ class HomeController extends Controller {
 
                 // Building HTTP Response :
                 $response = new JsonResponse();
-                $response->setData($tagsResult); // Output: {"name":"foo","age":99});
+                $response->setData($tagsResult);
                 return $response;
             }
 			else
@@ -144,8 +145,9 @@ class HomeController extends Controller {
                 $jsonData = $serializer->serialize($ideas, 'json');
 
                 // Building HTTP Response :
-                $response = new JsonResponse();
-                $response->setData($jsonData); // Output: {"name":"foo","age":99});
+                $response = new Response();
+                $response->setContent($jsonData); // Output: {"name":"foo","age":99});
+				$response->headers->set('Content-Type', 'application/json');
                 return $response;
             }
 			else

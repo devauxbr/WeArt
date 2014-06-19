@@ -495,14 +495,6 @@ span.tag.greyTag
 	
 }
 
-.cest-partie-button
-{
-    margin-left: 0 auto;
-    margin-right: 0 auto;
-    width: 6e
-}
-
-
 /* ---------------------- MAGIC BOX ---------------------- */
 
 .magic-box h4
@@ -724,7 +716,7 @@ table .good
 
 .themeList
 {
-	height: 261px;
+	max-height: 261px;
 	overflow: auto;
 }
 
@@ -749,3 +741,34 @@ table .good
 	border-left: 4px solid #3ef942;
 }
 
+.ideaSearch .findTagInput
+{
+	border: none;
+	background-color: #c9c9c9;
+	border-radius: 15px;
+	padding: 7px;
+	padding-left: 50px;
+	font-weight: bold;
+	color: #7f7f7f;
+	background-image: url("../images/search.png");
+	background-repeat: no-repeat;
+	background-position: 12px 8px;
+	width: 160px;
+}
+
+.tagPool .tag .glyphicon
+{
+	font-size: 0.7em;
+	cursor: pointer;
+}
+
+.ideaSearch .searchBt
+{
+	margin-top: 15px;
+}
+
+.ideaSearch
+{
+	width: 890px;
+	margin: auto;
+}
