@@ -31,8 +31,8 @@
             <div class="col-md-12 newsContainer">
                 <div class="col-md-1"></div>
                 <div class="slider-in">
-                    <h1>Thème de la semaine</h1>
-                    <p>Texte à venir</p>
+                    <h1>Thème de la semaine : {{ themeSemaine.title }}</h1>
+                    <p>{{ themeSemaine.description }}</p>
                 </div>
                 <div class="col-md-1"></div>
             </div>
@@ -49,35 +49,18 @@
 
                 --><div class="slider-content">
                     <div class="slider-in">
+			{% for groupIdeas in todayTopIdeas %}
                         <div class="row">
+                            {% for idea in groupIdeas %}
                             <div class="col-sm-3">
                                 <div class="newsContainer siteContent">
-                                    <h3>Titre idée</h3>
-                                    <img src="http://placehold.it/196x196">
-                                </div>
-                            </div><!--
-
-                            --><div class="col-sm-3">
-                                <div class="newsContainer siteContent">
-                                    <h3>Titre idée</h3>
-                                    <img src="http://placehold.it/196x196">
-                                </div>
-                            </div><!--
-
-                            --><div class="col-sm-3">
-                                <div class="newsContainer siteContent">
-                                    <h3>Titre idée</h3>
-                                    <img src="http://placehold.it/196x196">
-                                </div>
-                            </div><!--
-
-                            --><div class="col-sm-3">
-                                <div class="newsContainer siteContent">
-                                    <h3>Titre idée</h3>
+                                    <h3>{{ idea.title }}</h3>
                                     <img src="http://placehold.it/196x196">
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
+                        {% endfor %}
                     </div>
                 </div><!--
 
@@ -137,36 +120,4 @@
             </div>
         </div>
     </article>
-    <!--
-        <h1>TODO</h1>
-        <p><a href="https://trello.com/c/jnNd6lpG">Liens vers la tâche Trello</a></p>
-        
-        <h1>Theme semaine</h1>
-            <h2>
-    {{ themeSemaine.title }}
-</h2>
-<p>
-    {{ themeSemaine.description }}
-</p>
-
-<h1>Top Today Ideas</h1>
-    {% for idea in todayTopIdeas %}
-        <h2>
-        {{ idea.title }}
-    </h2>
-    <p>
-        {{ idea.description }}
-    </p>
-    {% endfor %}
-    
-    <h1>Top Week Ideas</h1>
-    {% for idea in weekTopIdeas %}
-        <h2>
-        {{ idea.title }}
-    </h2>
-    <p>
-        {{ idea.description }}
-    </p>
-    {% endfor %}
-    -->
 {% endblock %}

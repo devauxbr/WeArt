@@ -27,7 +27,17 @@ class IdeaRepository extends EntityRepository {
 		if($limit !== 0)
 			$qb->setMaxResults($limit);
 
-        return $qb->getQuery()->getResult();
+        $todayTopIdeas = $qb->getQuery()->getResult();
+        $todayGroupTopIdeas = array();
+        $i = 0; $j = 0;
+        foreach ($todayTopIdeas as $idea) {
+            $todayGroupTopIdeas[$j][] = $idea;
+            $i++;
+            if ($i % 4 == 0) {
+                $j++;
+            }
+        }
+        return $todayGroupTopIdeas;
     }
 	
     public function getTodayTopIdea($limit = 0) {
