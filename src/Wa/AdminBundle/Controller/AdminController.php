@@ -279,7 +279,10 @@ class AdminController extends Controller {
 			$theme->setTitle($loremIpsum->getWords(1, 4));
 			$theme->setDescription($loremIpsum->getWords(10, 20));
 			$theme->setYear(2014);
-			$theme->setWeek(22 + $i);
+                        // current week number :
+                        $date = new \DateTime();  // today
+                        $week = (int) $date->format("W") - 1;
+                        $theme->setWeek($week + $i);
 			$em->persist($theme);
 
 			// --------------> Ideas
