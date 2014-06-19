@@ -43,7 +43,9 @@ class HomeController extends Controller {
         $ideaRepo = $em->getRepository('WaFrontBundle:Idea');
         // select today and week top ideas :
         $todayTopIdeas = $ideaRepo->getTodayTopIdea();
+        
         $weekTopIdeas = $ideaRepo->getWeekTopIdea();
+        
 
         return $this->render('WaFrontBundle:Home:consultation.html.twig', array(
                     'themeSemaine' => $themeSemaine,
