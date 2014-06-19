@@ -260,7 +260,7 @@ class AdminController extends Controller {
 		$discplines[] = $discpline;
 		
 		// --------------> Tags
-		$tagCount = rand(15, 30);
+		$tagCount = rand(15, 20);
 		$tagArray = array();
 		for($i = 0; $i < $tagCount; $i++)
 		{
@@ -274,7 +274,7 @@ class AdminController extends Controller {
 
 		// --------------> Themes
 
-		for ($i = 0; $i < 5; $i++) {
+		for ($i = 0; $i < 3; $i++) {
 			$theme = new Theme();
 			$theme->setTitle($loremIpsum->getWords(1, 4));
 			$theme->setDescription($loremIpsum->getWords(10, 20));
@@ -283,7 +283,7 @@ class AdminController extends Controller {
 			$em->persist($theme);
 
 			// --------------> Ideas
-			$ideaCount = rand(10, 60);
+			$ideaCount = rand(10, 20);
 			for ($j = 0; $j < $ideaCount; $j++) {
 				$idea = new Idea();
 				$idea->setTitle($loremIpsum->getWords(2, 4));
@@ -309,7 +309,7 @@ class AdminController extends Controller {
 				
 				
 				
-				$voteCount = rand(1, 500);
+				$voteCount = rand(1, 40);
 				$idea->setVoteNumber($voteCount);
 				for($k = 0; $k < $voteCount; $k++)
 				{
