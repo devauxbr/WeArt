@@ -470,6 +470,8 @@ span.tag.greyTag
 	background-color: white;
 	border-bottom: 2px solid #7f7f7f;
 	padding: 30px;
+	//height: 325px;
+	margin-bottom: 10px;
 }
 
 .newsContainer img
