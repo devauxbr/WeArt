@@ -470,6 +470,8 @@ span.tag.greyTag
 	background-color: white;
 	border-bottom: 2px solid #7f7f7f;
 	padding: 30px;
+	//height: 325px;
+	margin-bottom: 10px;
 }
 
 .newsContainer img
@@ -711,6 +713,8 @@ table .good
 	border-top-right-radius: 0;
 	border-top-left-radius: 0;
 	padding: 51px;
+	padding-top: 20px;
+	padding-bottom: 30px;
 }
 
 
@@ -743,6 +747,7 @@ table .good
 
 .ideaSearch .findTagInput
 {
+	margin: auto;
 	border: none;
 	background-color: #c9c9c9;
 	border-radius: 15px;
@@ -754,6 +759,8 @@ table .good
 	background-repeat: no-repeat;
 	background-position: 12px 8px;
 	width: 160px;
+	margin-bottom: 15px;
+	display: block;
 }
 
 .tagPool .tag .glyphicon
@@ -764,11 +771,26 @@ table .good
 
 .ideaSearch .searchBt
 {
-	margin-top: 15px;
+	margin-top: 30px;
 }
 
 .ideaSearch
 {
 	width: 890px;
 	margin: auto;
+}
+
+.ideaSearch h3, .ideaSearch label
+{
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.3em;
+	margin-top: 5px;
+	display: block;
+	margin-bottom: 15px;
+}
+
+.searchBtBlock
+{
+	text-align: center;
 }

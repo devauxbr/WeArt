@@ -179,10 +179,21 @@ wa.IdeaSearch = new dejavu.Class.declare({
 	
 	showResult: function(data)
 	{
-		$('.result').empty();
+		var resultElem = $('.result');
+		resultElem.empty();
 		
-		/*data.forEach(data, function() {
+		var template = $('#template').find('.ideaBlock');
+		
+		for (var key in data) {
+			var idea = data[key];
 			
-		});*/
+			var clone = template.clone();
+			
+			clone.find('h3').text(idea.title);
+			clone.find('.content').html(idea.description);
+			clone.find('a').attr('href', consultUrl.substr(0, consultUrl.length - 1) + idea.id);
+			
+			resultElem.append(clone);
+		}
 	}
 });
