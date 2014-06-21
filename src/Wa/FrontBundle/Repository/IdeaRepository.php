@@ -14,7 +14,7 @@ use Wa\FrontBundle\Entity\Theme;
  */
 class IdeaRepository extends EntityRepository {
 
-	public function getPeriodTopIdeas(\DateInterval $period, $limit = 0) {
+    public function getPeriodTopIdeas(\DateInterval $period, $limit = 0) {
         $date = new \Datetime();
 
         $qb = $this->createQueryBuilder('i')
@@ -23,13 +23,14 @@ class IdeaRepository extends EntityRepository {
                 ->where('v.date >= :date')->setParameter('date', $date->sub($period))
                 ->orderby('nbVotes', 'DESC')
                 ->groupBy('v.idea');
-		
-		if($limit !== 0)
-			$qb->setMaxResults($limit);
+
+        if ($limit !== 0)
+            $qb->setMaxResults($limit);
 
         $todayTopIdeas = $qb->getQuery()->getResult();
         $todayGroupTopIdeas = array();
-        $i = 0; $j = 0;
+        $i = 0;
+        $j = 0;
         foreach ($todayTopIdeas as $idea) {
             $todayGroupTopIdeas[$j][] = $idea;
             $i++;
@@ -39,15 +40,15 @@ class IdeaRepository extends EntityRepository {
         }
         return $todayGroupTopIdeas;
     }
-	
+
     public function getTodayTopIdea($limit = 0) {
-		return $this->getPeriodTopIdeas(
-				\DateInterval::createFromDateString('1 days'), $limit);
+        return $this->getPeriodTopIdeas(
+                        \DateInterval::createFromDateString('1 days'), $limit);
     }
 
     public function getWeekTopIdea($limit = 0) {
-		return $this->getPeriodTopIdeas(
-				\DateInterval::createFromDateString('1 weeks'), $limit);
+        return $this->getPeriodTopIdeas(
+                        \DateInterval::createFromDateString('1 weeks'), $limit);
     }
 
     public function searchIdeas($discipline, $theme, $tags) {
@@ -64,7 +65,7 @@ class IdeaRepository extends EntityRepository {
                 ->setParameter('theme', $theme)
                 ->orderBy('nbVotes', 'DESC')
                 ->groupBy('i');
-        foreach($tags as $i => $tag) {
+        foreach ($tags as $i => $tag) {
             $qb->andWhere('t.title = :tag' . $i)
                     ->setParameter('tag' . $i, $tag);
         }

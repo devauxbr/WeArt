@@ -1,207 +1,207 @@
 {% extends "::front.html.twig" %}
 
 {% block title %}
-	{{ parent() }}Accueil
+    {{ parent() }}Accueil
 {% endblock %}
 
 {% block javascripts %}
-	{{ parent() }}
-	
-	<script src="{{ asset('js/mySlider.js') }}"></script>
-	<script src="{{ asset('js/magicBox.js') }}"></script>
-	
-	<script>
-		$(function(){
-			$(".slider").each(function() {
-				new wa.Slider($(this));
-			});
-			
-			$(".magic-box").each(function() {
-				new wa.MagicBox($(this));
-			});
-		});
-	</script>
+    {{ parent() }}
+
+    <script src="{{ asset('js/mySlider.js') }}"></script>
+    <script src="{{ asset('js/magicBox.js') }}"></script>
+
+    <script>
+        $(function() {
+            $(".slider").each(function() {
+                new wa.Slider($(this));
+            });
+
+            $(".magic-box").each(function() {
+                new wa.MagicBox($(this));
+            });
+        });
+    </script>
 {% endblock %}
 
 {% block content %}
-	<article class="waBlock">
-		<div class="container">
-			<div class="col-md-1"></div>
-			<div class="slider col-md-10 stepsSizer">
+    <article class="waBlock">
+        <div class="container">
+            <div class="col-md-1"></div>
+            <div class="slider col-md-10 stepsSizer">
                 <div class="row">
-					<div class="slider-border">
-						<span class="out-bt"><button class="btn btn-primary slider-left"><span>&lt;</span></button></span>
-					</div><!--
+                    <div class="slider-border">
+                        <span class="out-bt"><button class="btn btn-primary slider-left"><span>&lt;</span></button></span>
+                    </div><!--
 
-					--><div class="slider-content">
-						<div class="slider-in">
-							<div class="row">
-								<div class="col-md-5">
-									<img src="{{ asset('images/steps/step_1.png') }}" alt="Étape 1 : proposition des idées" />
-								</div>
+                    --><div class="slider-content">
+                        <div class="slider-in">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="{{ asset('images/steps/step_1.png') }}" alt="Étape 1 : proposition des idées" />
+                                </div>
 
-								<div class="col-md-7">
-									<h3>Étape 1 : proposition des idées</h3>
+                                <div class="col-md-7">
+                                    <h3>Étape 1 : proposition des idées</h3>
 
-									<p>
-										Sur un thème hebdomadaire proposée par l’équipe de WeArt, tous les internautes souhaitant contribuer à la consultation du site (que nous appelerons sobrement les « contributeurs ») postent leurs idées artistiques en rapport avec le sujet.
-									</p>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-5">
-									<img src="{{ asset('images/steps/step_2.png') }}" alt="Étape 2 : vote" />
-								</div>
+                                    <p>
+                                        Sur un thème hebdomadaire proposée par l’équipe de WeArt, tous les internautes souhaitant contribuer à la consultation du site (que nous appelerons sobrement les « contributeurs ») postent leurs idées artistiques en rapport avec le sujet.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="{{ asset('images/steps/step_2.png') }}" alt="Étape 2 : vote" />
+                                </div>
 
-								<div class="col-md-7">
-									<h3>Étape 2 : vote</h3>
-									<p>
-										Pendant une semaine, tous les internautes votent pour les idées les plus folles, les plus imaginatives, les plus prometteuses.
-									</p>
+                                <div class="col-md-7">
+                                    <h3>Étape 2 : vote</h3>
+                                    <p>
+                                        Pendant une semaine, tous les internautes votent pour les idées les plus folles, les plus imaginatives, les plus prometteuses.
+                                    </p>
 
-									<p>
-										Il suffit pour cela d'être connecté. La procédure se veut la plus simple et assistée possible (avec un compte Facebook, Google, CAS-UTC, ou en créant son propre compte WeArt)
-									</p>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-5">
-									<img src="{{ asset('images/steps/step_3.png') }}" alt="Étape 3 : élection de la meilleure idée" />
-								</div>
+                                    <p>
+                                        Il suffit pour cela d'être connecté. La procédure se veut la plus simple et assistée possible (avec un compte Facebook, Google, CAS-UTC, ou en créant son propre compte WeArt)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="{{ asset('images/steps/step_3.png') }}" alt="Étape 3 : élection de la meilleure idée" />
+                                </div>
 
-								<div class="col-md-7">
-									<h3>Étape 3 : élection de la meilleure idée</h3>
+                                <div class="col-md-7">
+                                    <h3>Étape 3 : élection de la meilleure idée</h3>
 
-									<p>
-										Au terme de la semaine, le total des votes est fait, et l’idée avec le plus de suffrages est sélectionnée. Elle est alors présentée à tous les potentiels artistes inscrits sur le site et désireux de contribuer.
-									</p>
-									<p>
-										Peinture, graphisme, musique, vidéo, sculpture, ... Suivant la semaine ou l'objet du thème, il peut il y en avoir pour tous les goûts.
-									</p>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-5">
-									<img src="{{ asset('images/steps/step_4.png') }}" alt="Étape 4 : propositions d'approches" />
-								</div>
+                                    <p>
+                                        Au terme de la semaine, le total des votes est fait, et l’idée avec le plus de suffrages est sélectionnée. Elle est alors présentée à tous les potentiels artistes inscrits sur le site et désireux de contribuer.
+                                    </p>
+                                    <p>
+                                        Peinture, graphisme, musique, vidéo, sculpture, ... Suivant la semaine ou l'objet du thème, il peut il y en avoir pour tous les goûts.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="{{ asset('images/steps/step_4.png') }}" alt="Étape 4 : propositions d'approches" />
+                                </div>
 
-								<div class="col-md-7">
-									<h3>Étape 4 : propositions d'approches</h3>
+                                <div class="col-md-7">
+                                    <h3>Étape 4 : propositions d'approches</h3>
 
-									<p>
-										Les artistes volontaires et intéressés par l’idée élue proposent leur approche : comment ils comptent appliquer le concept. Chaque internaute est libre de se proposer.
-									</p>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-5">
-									<img src="{{ asset('images/steps/step_5.png') }}" alt="Étape 5 : réalisation de l'oeuvre" />
-								</div>
+                                    <p>
+                                        Les artistes volontaires et intéressés par l’idée élue proposent leur approche : comment ils comptent appliquer le concept. Chaque internaute est libre de se proposer.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="{{ asset('images/steps/step_5.png') }}" alt="Étape 5 : réalisation de l'oeuvre" />
+                                </div>
 
-								<div class="col-md-7">
-									<h3>Étape 5 : réalisation des oeuvres</h3>
+                                <div class="col-md-7">
+                                    <h3>Étape 5 : réalisation des oeuvres</h3>
 
-									<p>
-										Le contributeur élu peut ensuite choisir les ébauche qu’il préfère. Dès lors, le (ou les) artiste(s) sélectionné(s) réalise(nt) l’œuvre. En fonction du thème, l’œuvre est offerte au contributeur. Le fruit du travail est récompensé par l’équipe du site.
-									</p>
-																	<p>
-										Si le nombre de propositions de réalisations est suffisante, l'organisation d'expositions-concours peuvent permettre de départager le fruit du travail de chacun des candidats.
-									</p>
-								</div>
-							</div>
-						</div>
-					</div><!--
+                                    <p>
+                                        Le contributeur élu peut ensuite choisir les ébauche qu’il préfère. Dès lors, le (ou les) artiste(s) sélectionné(s) réalise(nt) l’œuvre. En fonction du thème, l’œuvre est offerte au contributeur. Le fruit du travail est récompensé par l’équipe du site.
+                                    </p>
+                                    <p>
+                                        Si le nombre de propositions de réalisations est suffisante, l'organisation d'expositions-concours peuvent permettre de départager le fruit du travail de chacun des candidats.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--
 
-					--><div class="slider-border">
-						<span class="out-bt"><button class="btn btn-primary slider-right"><span>&gt;</span></button></span>
-					</div>
-					<div class="col-md-1"></div>
-				</div>
+                    --><div class="slider-border">
+                        <span class="out-bt"><button class="btn btn-primary slider-right"><span>&gt;</span></button></span>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
 
-				<div class="row">
-					<div class="slider-nav col-md-8">
-						<button></button>
-						<button></button>
-						<button></button>
-						<button></button>
-						<button></button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</article>
+                <div class="row">
+                    <div class="slider-nav col-md-8">
+                        <button></button>
+                        <button></button>
+                        <button></button>
+                        <button></button>
+                        <button></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
 
-	<article class="waBlock">
-		<div class="container">
-			<div class="col-md-8 slider newsContainer">
-				<div class="slider-border">
-					<span class="out-bt"><button class="btn btn-primary slider-left"><span>&lt;</span></button></span>
-				</div><!--
+    <article class="waBlock">
+        <div class="container">
+            <div class="col-md-8 slider newsContainer">
+                <div class="slider-border">
+                    <span class="out-bt"><button class="btn btn-primary slider-left"><span>&lt;</span></button></span>
+                </div><!--
 
-				--><div class="slider-content">
-					<div class="slider-in">
-						{% for article in articles %}
-							<div class="row">
-								<div class="col-md-5">
-									<img src="http://placehold.it/196x196">
-								</div>
+                --><div class="slider-content">
+                    <div class="slider-in">
+                        {% for article in articles %}
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="http://placehold.it/196x196">
+                                </div>
 
-								<div class="col-md-7">
-									<h3>{{ article.title }}</h3>
+                                <div class="col-md-7">
+                                    <h3>{{ article.title }}</h3>
 
-									{{ article.content | truncateHtml(400) | raw }}
+                                    {{ article.content | truncateHtml(400) | raw }}
 
-									<p class="text-right">
-										<a href="#">Suite de l'article</a>
-									</p>
-								</div>
-							</div>
-						{% endfor %}
-					</div>
-				</div><!--
+                                    <p class="text-right">
+                                        <a href="#">Suite de l'article</a>
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div><!--
 
-				--><div class="slider-border">
-					<span class="out-bt"><button class="btn btn-primary slider-right"><span>&gt;</span></button></span>
-				</div>
-				<div class="col-md-1"></div>
-				
-				<div class="mod-md-12">
-					<div class="slider-nav">
-						{% for article in articles %}
-							<button></button>
-						{% endfor %}
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-md-4">
-				<div class="magic-box">
-					<div class="off">
-						<span class="period">Thème de la semaine dernière</span>
-						<h4>{{ themes[0].title }}</h4>
-						<p>{{ themes[0].description }}</p>
-					</div>
-					<div>
-						<span class="period">Thème de la semaine</span>
-						<h4>{{ themes[1].title }}</h4>
-						<p>{{ themes[1].description }}</p>
-					</div>
-					<div class="off">
-						<span class="period">Thème de la semaine suivante</span>
-						<h4>{{ themes[2].title }}</h4>
-						<p>{{ themes[2].description }}</p>
-					</div>
-				</div><!--
+                --><div class="slider-border">
+                    <span class="out-bt"><button class="btn btn-primary slider-right"><span>&gt;</span></button></span>
+                </div>
+                <div class="col-md-1"></div>
 
-				--><div class="cest-partie-button">
-					<a href="{{ path('wa_front_consultation') }}"><span class="out-bt"><button class="btn btn-primary">C'est parti -&gt;</button></span></a>
-				</div>
-			</div>	
-                                        
-			
-		</div>
-	</article>
-	
+                <div class="mod-md-12">
+                    <div class="slider-nav">
+                        {% for article in articles %}
+                            <button></button>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="magic-box">
+                    <div class="off">
+                        <span class="period">Thème de la semaine dernière</span>
+                        <h4>{{ themes[0].title }}</h4>
+                        <p>{{ themes[0].description }}</p>
+                    </div>
+                    <div>
+                        <span class="period">Thème de la semaine</span>
+                        <h4>{{ themes[1].title }}</h4>
+                        <p>{{ themes[1].description }}</p>
+                    </div>
+                    <div class="off">
+                        <span class="period">Thème de la semaine suivante</span>
+                        <h4>{{ themes[2].title }}</h4>
+                        <p>{{ themes[2].description }}</p>
+                    </div>
+                </div><!--
+
+                --><div class="cest-partie-button">
+                    <a href="{{ path('wa_front_consultation') }}"><span class="out-bt"><button class="btn btn-primary">C'est parti -&gt;</button></span></a>
+                </div>
+            </div>	
+
+
+        </div>
+    </article>
+
     <article class="waBlock">
         <div class="container">
             <h1>Top de la semaine</h1>
@@ -249,18 +249,18 @@
                 </div>
             </div>
         </div>
-    <!--</article>
-	<article class="waBlock">
-		<div class="container">
-                    <h1>Boutons de test</h1>
-			<span class="out-bt"><button class="btn btn-primary">C'est parti -&gt;</button><span>
-			<button class="btn btn-primary"><span>&lt;- Par là<span></button>
-			<button class="btn btn-primary"><span>&lt;<span></button>
-			
-			<span class="tag">Un tag</span>
-			<span class="tag">Un autre</span>
-			
-			<a href="#">Suite de l'article</a>
-		</div>
-	</article>-->
-{% endblock %}
+        </article>
+            <!--<article class="waBlock">
+                    <div class="container">
+                        <h1>Boutons de test</h1>
+                            <span class="out-bt"><button class="btn btn-primary">C'est parti -&gt;</button><span>
+                            <button class="btn btn-primary"><span>&lt;- Par là<span></button>
+                            <button class="btn btn-primary"><span>&lt;<span></button>
+                            
+                            <span class="tag">Un tag</span>
+                            <span class="tag">Un autre</span>
+                            
+                            <a href="#">Suite de l'article</a>
+                    </div>
+            </article>-->
+    {% endblock %}
