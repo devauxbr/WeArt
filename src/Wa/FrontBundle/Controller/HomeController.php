@@ -24,7 +24,7 @@ class HomeController extends Controller {
         $indexThemes = $em->getRepository('WaFrontBundle:Theme')->getIndexThemes();
 
         // select today top ideas
-        $topIdeas = $em->getRepository('WaFrontBundle:Idea')->getTodayTopIdea(4);
+        $topIdeas = $em->getRepository('WaFrontBundle:Idea')->getWeekTopIdea();
 
         return $this->render('WaFrontBundle:Home:index.html.twig', array(
                     'articles' => $articles,
