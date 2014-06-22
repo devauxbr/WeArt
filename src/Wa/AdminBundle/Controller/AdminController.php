@@ -73,13 +73,53 @@ class AdminController extends Controller {
 					'form' => $form->createView(),
 		));
 	}
-
-	public function listThemeAction() {
+	
+	public function editThemeAction($themeId) {
 		$em = $this->getDoctrine()->getManager();
-		$themes = $em->getRepository('WaFrontBundle:Theme')->findAll();
+		$theme = $em->getRepository('WaFrontBundle:Theme')->find($themeId);
+		
+		if(!$theme)
+			throw $this->createNotFoundException('The theme does not exist');
+		
+		$form = $this->createForm(new ThemeType, $theme);
+		$request = $this->get('request');
+		if ($request->getMethod() == 'POST') {
+			$form->bind($request);
 
+			if ($form->isValid()) {
+				$em->persist($theme);
+				$em->flush();
+				// On définit un message flash
+				$this->get('session')->getFlashBag()->add('info', 'Thème bien modifié');
+
+
+				return $this->redirect($this->generateUrl('wa_list_theme'));
+			}
+		}
+
+		return $this->render('WaAdminBundle:Default:editTheme.html.twig', array(
+			'form' => $form->createView(),
+		));
+	}
+
+	public function listThemeAction($isAll) {		
+		$em = $this->getDoctrine()->getManager();
+		$themes = $em->getRepository('WaFrontBundle:Theme')->getThemesBo($isAll);
+
+		if(count($themes) > 0)
+		{
+			$themes[0]['nbVoteDelta'] = 0;
+			$themes[0]['nbIdeaDelta'] = 0;
+		}
+		for($i = 1; $i < count($themes); $i++)
+		{
+			$themes[$i]['nbVoteDelta'] = ($themes[$i]['nbVotes'] - $themes[$i - 1]['nbVotes']) / $themes[$i]['nbVotes'];
+			$themes[$i]['nbIdeaDelta'] = ($themes[$i]['nbIdea'] - $themes[$i - 1]['nbIdea']) / $themes[$i]['nbIdea'];
+		}
+		
 		return $this->render('WaAdminBundle:Default:listThemes.html.twig', array(
-					'themes' => $themes,
+			'themes' => $themes,
+			'isAll' => $isAll
 		));
 	}
 
@@ -273,16 +313,16 @@ class AdminController extends Controller {
 		}
 
 		// --------------> Themes
-
-		for ($i = 0; $i < 3; $i++) {
+		$themeCount = 10;
+		for ($i = 0; $i < $themeCount; $i++) {
 			$theme = new Theme();
 			$theme->setTitle($loremIpsum->getWords(1, 4));
 			$theme->setDescription($loremIpsum->getWords(10, 20));
 			$theme->setYear(2014);
-                        // current week number :
-                        $date = new \DateTime();  // today
-                        $week = (int) $date->format("W") - 1;
-                        $theme->setWeek($week + $i);
+			// current week number :
+			$date = new \DateTime();  // today
+			$week = (int) $date->format("W") - $themeCount + 2;
+			$theme->setWeek($week + $i);
 			$em->persist($theme);
 
 			// --------------> Ideas

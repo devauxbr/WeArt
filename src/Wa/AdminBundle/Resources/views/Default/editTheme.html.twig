@@ -1,0 +1,24 @@
+{% extends "::front.html.twig" %}
+
+{% block title %}
+	{{ parent() }}Ajout Theme
+{% endblock %}
+
+{% block content %}
+
+<div class="waBlock">
+	<div class="container">
+		<h1>Modification d'un thème</h1>
+
+		<p>
+			<a href="{{ path('wa_list_theme') }}">Retour à la liste</a>
+		</p>
+		
+		<form method="post" {{ form_enctype(form) }}>
+			{{ form_widget(form) }}
+			<span class="out-bt"><button type="submit" class="btn btn-primary">Modifier</button></span>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

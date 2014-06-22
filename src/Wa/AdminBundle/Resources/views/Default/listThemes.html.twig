@@ -6,58 +6,47 @@
 
 {% block content %}
 
-<h1>Consultation des thèmes</h1>
+<div class="waBlock">
+	<div class="container">
+		<h1>Consultation des thèmes</h1>
 
-<table class="table">
-	<thead>
-		<tr>
-			<th>Date</th>
-			<th>Intitulé</th>
-			<th>Idée</th>
-			<th>Prop.</th>
-			<th>Votes.</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr class="beforeLnk">
-			<th colspan="6">Voir les thèmes précedents</th>
-		</tr>
+		<p>
+			<a href="{{ path('wa_admin_homepage') }}">Retour à l'administration</a> - <a href="{{ path('wa_add_theme') }}">Ajouter un thème</a>
+		</p>
 		
-		<tr>
-			<td>2014 - 9</td>
-			<td>Les nuage</td>
-			<td>32 / <span class="bad">+0%</span></td>
-			<td>5482 / <span class="bad">+0%</span></td>
-			<td>5 / <span class="bad">+0%</span></td>
-		</tr>
-		<tr>
-			<td>2014 - 10</td>
-			<td>Le rève</td>
-			<td>40 / <span class="good">+1%</span></td>
-			<td>5872 / <span class="good">+2%</span></td>
-			<td>3 / <span class="bad">-40%</span></td>
-		</tr>
-		<tr>
-			<td>2014 - 11</td>
-			<td>Les oiseaux</td>
-			<td>45 / <span class="good">+1%</span></td>
-			<td>6124 / <span class="good">+7%</span></td>
-			<td>5 / <span class="good">+40%</span></td>
-		</tr>
-		<tr>
-			<td>2014 - 12</td>
-			<td>Le marbre</td>
-			<td>10 / <span class="bad">-70%</span></td>
-			<td>2141 / <span class="bad">-50%</span></td>
-			<td>5 / <span class="bad">+0%</span></td>
-		</tr>
-		<tr>
-			<td>2014 - 13</td>
-			<td>Le froid</td>
-			<td>20 / <span class="good">+100%</span></td>
-			<td>6487 / <span class="good">+300%</span></td>
-			<td>6 / <span class="good">+20%</span></td>
-		</tr>
-	</tbody>
-</table>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Intitulé</th>
+					<th>Idée</th>
+					<th>Votes.</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% if not isAll %}
+					<tr class="beforeLnk">
+						<th colspan="5"><a href="{{ path('wa_list_theme_all') }}">Voir les thèmes précedents</a></th>
+					</tr>
+				{% endif %}
+					
+				{% for themeInfo in themes %}
+					<tr>
+						<td>{{ themeInfo.theme.year }} - {{ themeInfo.theme.week }}</td>
+						<td><a href="{{ path('wa_edit_theme', {themeId: themeInfo.theme.id}) }}">{{ themeInfo.theme.title }}</a></td>
+						
+						<td>{{ themeInfo.nbIdea }} / <span class="{% if themeInfo.nbIdeaDelta > 0 %}good{% elseif themeInfo.nbIdeaDelta < 0 %}bad{% endif %}">{% if themeInfo.nbIdeaDelta >= 0 %}+{% endif %}{{ (themeInfo.nbIdeaDelta * 100) | number_format(2, ',', ' ') }}%</span></td>
+						<td>{{ themeInfo.nbVotes }} / <span class="{% if themeInfo.nbVoteDelta > 0 %}good{% elseif themeInfo.nbVoteDelta < 0 %}bad{% endif %}">{% if themeInfo.nbVoteDelta >= 0 %}+{% endif %}{{ (themeInfo.nbVoteDelta * 100) | number_format(2, ',', ' ') }}%</span></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		
+		<p>
+			<a href="{{ path('wa_add_theme') }}">Ajouter un thème</a>
+		</p>
+	</div>
+</div>
+
+
 {% endblock %}

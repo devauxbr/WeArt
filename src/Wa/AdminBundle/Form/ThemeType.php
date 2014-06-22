@@ -19,8 +19,8 @@ class ThemeType extends AbstractType
         $builder
             ->add('title', 'text', array('label' => 'Titre du thème'))
             ->add('description', 'textarea', array('label' => 'Déscription du thème'))
-            ->add('year','integer', array('label' => 'Année', 'data' => date('Y')))
-			->add('week', 'integer', array('label' => 'Numéro de la semaine', 'data' => date('W')))
+            ->add('year','integer', array('label' => 'Année'))
+			->add('week', 'integer', array('label' => 'Numéro de la semaine'))
 		;
     }
     

@@ -48,6 +48,18 @@
 		<div class="triangle"></div>
 	</header>
 	
+	{% if app.session.flashbag.keys() %}
+		<div class="waBlock">
+			<div class="container">
+				{% for flashMessage in app.session.flashbag.get('info') %}
+					<p>
+						{{ flashMessage }}
+					</p>
+				{% endfor %}
+			</div>
+		</div>
+	{% endif %}
+	
 	{% block content %}
 	
 	{% endblock %}

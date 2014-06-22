@@ -173,6 +173,10 @@ class Theme
     public function __construct()
     {
         $this->ideas = new \Doctrine\Common\Collections\ArrayCollection();
+		
+		$this->week = date('W');
+		$this->year = date('Y');
+		
     }
 
     /**

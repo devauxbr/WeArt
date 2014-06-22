@@ -50,5 +50,25 @@ class ThemeRepository extends EntityRepository {
         // select week's theme
         return $this->findOneByWeek($week);
     }
+	
+	public function getThemesBo($isAll = true) {
+		
+		$qb = $this->createQueryBuilder('t')
+                ->select('t AS theme, count(DISTINCT i.id) AS nbIdea, count(v.id) AS nbVotes')
+				->leftJoin('t.ideas', 'i')
+                ->leftJoin('i.votes', 'v')
+                ->orderBy('t.year', 'ASC')
+				->addOrderBy('t.week', 'ASC')
+				->groupBy('i')
+                ->groupBy('t');
+		
+		if(! $isAll)
+		{
+			$week = (int) (new \DateTime())->format("W") - 5;
+			$qb->where('t.week >= :week')->setParameter('week', $week);
+		}
+
+        return $qb->getQuery()->getResult();
+	}
 
 }

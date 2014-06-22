@@ -10,9 +10,19 @@ wa_add_theme:
     pattern: /add_theme
     defaults: { _controller: WaAdminBundle:Admin:addTheme }
 
+wa_edit_theme:
+    pattern: /edit_theme/{themeId}
+    defaults: { _controller: WaAdminBundle:Admin:editTheme }
+    requirements:
+        themeId: \d+
+
 wa_list_theme:
     pattern: /list_theme
-    defaults: { _controller: WaAdminBundle:Admin:listTheme }
+    defaults: { _controller: WaAdminBundle:Admin:listTheme, isAll: false }
+
+wa_list_theme_all:
+    pattern: /list_theme_all
+    defaults: { _controller: WaAdminBundle:Admin:listTheme, isAll: true }
     
 wa_clear_site:
     pattern: /clear_site
