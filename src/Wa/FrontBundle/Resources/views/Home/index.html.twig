@@ -175,27 +175,31 @@
             </div>
 
             <div class="col-md-4">
-                <div class="magic-box">
-                    <div class="off">
-                        <span class="period">Thème de la semaine dernière</span>
-                        <h4>{{ themes[0].title }}</h4>
-                        <p>{{ themes[0].description }}</p>
-                    </div>
-                    <div>
-                        <span class="period">Thème de la semaine</span>
-                        <h4>{{ themes[1].title }}</h4>
-                        <p>{{ themes[1].description }}</p>
-                    </div>
-                    <div class="off">
-                        <span class="period">Thème de la semaine suivante</span>
-                        <h4>{{ themes[2].title }}</h4>
-                        <p>{{ themes[2].description }}</p>
-                    </div>
-                </div><!--
+				{% if themes | length < 3 %}
+					<p>Pas de thème</p>
+				{% else %}
+					<div class="magic-box">
+						<div class="off">
+							<span class="period">Thème de la semaine dernière</span>
+							<h4>{{ themes[0].title }}</h4>
+							<p>{{ themes[0].description }}</p>
+						</div>
+						<div>
+							<span class="period">Thème de la semaine</span>
+							<h4>{{ themes[1].title }}</h4>
+							<p>{{ themes[1].description }}</p>
+						</div>
+						<div class="off">
+							<span class="period">Thème de la semaine suivante</span>
+							<h4>{{ themes[2].title }}</h4>
+							<p>{{ themes[2].description }}</p>
+						</div>
+					</div><!--
 
-                --><div class="cest-partie-button">
-                    <a href="{{ path('wa_front_consultation') }}"><span class="out-bt"><button class="btn btn-primary">C'est parti -&gt;</button></span></a>
-                </div>
+					--><div class="cest-partie-button">
+						<a href="{{ path('wa_front_consultation') }}"><span class="out-bt"><button class="btn btn-primary">C'est parti -&gt;</button></span></a>
+					</div>
+				{% endif %}
             </div>	
 
 
