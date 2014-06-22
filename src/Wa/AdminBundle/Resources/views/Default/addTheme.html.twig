@@ -10,7 +10,9 @@
 	<div class="container">
 		<h1>Ajouter un thème de la semaine</h1>
 
-		<a href="{{ path('wa_admin_homepage') }}">Retour à l'administration</a>
+		<p>
+			<a href="{{ path('wa_admin_homepage') }}">Retour à l'administration</a>
+		</p>
 		
 		<form method="post" {{ form_enctype(form) }}>
 			{{ form_widget(form) }}

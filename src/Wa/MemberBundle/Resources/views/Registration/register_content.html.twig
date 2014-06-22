@@ -1,5 +1,7 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
+<h1>Créer un compte WeArt</h1>
+
 <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
     {{ form_widget(form) }}
     <div>

@@ -3,6 +3,6 @@
 <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
     {{ form_widget(form) }}
     <div>
-        <span class="out-bt"><button class="btn btn-primary" type="submit" id="_submit" name="_submit">{{ 'security.login.submit'|trans }}</button></span>
+        <span class="out-bt"><button class="btn btn-primary" type="submit" id="_submit" name="_submit">Valider</button></span>
     </div>
 </form>
