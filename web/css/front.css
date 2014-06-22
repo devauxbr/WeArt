@@ -600,10 +600,11 @@ span.tag.greyTag
 form
 {
     margin: auto;
+	max-width: 750px;
 }
 
 form input[type="email"], form input[type="text"], form input[type="password"],
-form input[type="file"]
+form input[type="file"], form textarea
 {
     width: 48%;
     height: 42px;
@@ -618,21 +619,41 @@ form input[type="file"]
 
     font-weight: bold;
     color: #008403;
+	
+	display: inline-block;
+	
+	vertical-align: top;
+}
+
+form > div, form > div > div
+{
+	margin-top: 40px;
+}
+
+form textarea
+{
+    height: 150px;
 }
 
 form input[type="reset"], form input[type="button"], form input[type="submit"],
 form button.btn
 {
-    margin-top: 50px;
     margin-left: 48%;
+	
+	vertical-align: top;
+	display: inline-block;
+	
+	margin-top: 40px;
 }
 
 form label
 {
     width: 48%;
     font-weight: normal;
-    margin-top: 40px;
     font-size: 1.1em;
+	
+	display: inline-block;
+	vertical-align: top;
 }
 
 /* ---------------------- FORM TIPS ---------------------- */

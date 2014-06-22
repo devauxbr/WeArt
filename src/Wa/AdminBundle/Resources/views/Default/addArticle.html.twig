@@ -6,12 +6,18 @@
 
 {% block content %}
 
-<h3>Ajouter un article</h3>
-
-<div class="well">
-	<form method="post" {{ form_enctype(form) }}>
-		{{ form_widget(form) }}
-		<span class="out-bt"><button type="submit" class="btn btn-primary">Ajouter</button></span>
-	</form>
+<div class="waBlock">
+	<div class="container">
+		<h1>Ajouter un article</h1>
+		
+		<a href="{{ path('wa_admin_homepage') }}">Retour à l'administration</a>
+		
+		<form method="post" {{ form_enctype(form) }}>
+			{{ form_widget(form) }}
+			<span class="out-bt"><button type="submit" class="btn btn-primary">Ajouter</button></span>
+		</form>
+	</div>
 </div>
+
+
 {% endblock %}

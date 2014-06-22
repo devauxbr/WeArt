@@ -17,11 +17,11 @@ class ThemeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text')
-            ->add('description', 'textarea')
-            ->add('week', 'integer', array('label' => 'Field', 'data' => date('W')))
-            ->add('year','integer', array('label' => 'Field', 'data' => date('Y')))
-        ;
+            ->add('title', 'text', array('label' => 'Titre du thème'))
+            ->add('description', 'textarea', array('label' => 'Déscription du thème'))
+            ->add('year','integer', array('label' => 'Année', 'data' => date('Y')))
+			->add('week', 'integer', array('label' => 'Numéro de la semaine', 'data' => date('W')))
+		;
     }
     
     /**

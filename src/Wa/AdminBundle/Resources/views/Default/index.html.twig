@@ -5,25 +5,32 @@
 {% endblock %}
 
 {% block content %}
-    {% for flashMessage in app.session.flashbag.get('info') %}
-        <p>
-            {{ flashMessage }}
-        </p>
-    {% endfor %}
-    <h1>Espace d'admninistration</h1>
-    <p>
-        <a href="{{ path('wa_add_article') }}">Ajouter un article</a>
-    </p>
-    <p>
-        <a href="{{ path('wa_add_theme') }}">Ajouter un thème</a>
-    </p>
 	
-	<p>
-        <a href="{{ path('wa_clear_site') }}">/!\ Vider le site /!\</a>
-    </p>
+<div class="waBlock">
+	<div class="container">
+		{% for flashMessage in app.session.flashbag.get('info') %}
+			<p>
+				{{ flashMessage }}
+			</p>
+		{% endfor %}
+		<h1>Espace d'admninistration</h1>
+		<p>
+			<a href="{{ path('wa_add_article') }}">Ajouter un article</a>
+		</p>
+		<p>
+			<a href="{{ path('wa_add_theme') }}">Ajouter un thème</a>
+		</p>
+
+		<p>
+			<a href="{{ path('wa_clear_site') }}">/!\ Vider le site /!\</a>
+		</p>
+
+		<p>
+			<a href="{{ path('wa_fill_site') }}">/!\ Remplir le site /!\</a>
+		</p>
+	</div>
+</div>
 	
-	<p>
-        <a href="{{ path('wa_fill_site') }}">/!\ Remplir le site /!\</a>
-    </p>
+   
 {% endblock %}
 
