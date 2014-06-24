@@ -64,7 +64,8 @@ class ThemeRepository extends EntityRepository {
 		
 		if(! $isAll)
 		{
-			$week = (int) (new \DateTime())->format("W") - 5;
+			$datetime = new \DateTime();
+			$week = (int) $datetime->format("W") - 5;
 			$qb->where('t.week >= :week')->setParameter('week', $week);
 		}
 
